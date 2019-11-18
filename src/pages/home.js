@@ -8,4 +8,6 @@ const getEvents = () => {
     });
 };
 
+const cardsTemplate = () => {};
+
 export default getEvents;
