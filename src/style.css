@@ -27,3 +27,14 @@
 .cards-background {
     background-color: #84fdc4;
 }
+
+@media (min-width: 900px) {
+     .card-size {
+         width: 450px;
+         height: max-content;
+     }
+
+     .img-card {
+         height: 50vh;
+     }
+}
