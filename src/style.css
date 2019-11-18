@@ -1,7 +1,22 @@
+paleta de cores {
+    color: #ffbc42;
+    color: #009765;
+    color: #4EC993;
+    color: #84FDC4;
+    color: #EEEEEE
+}
+
+
 .nav {
-    height: 10%;
+    height: 12%;
+    border-top: solid 2px #EEEEEE;
 }
 .nav-item {
     align-self: center;
-    font-size: 1.5em;
+
+}
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 2px;
 }
