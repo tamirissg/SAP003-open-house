@@ -1,4 +1,12 @@
 
+paleta de cores {
+    color: #ffbc42;
+    color: #009765;
+    color: #4EC993;
+    color: #84FDC4;
+    color: #EEEEEE
+}
+
 @media (max-width: 760px){
 
 html,body{
@@ -21,26 +29,21 @@ html,body{
 
 }
 
-paleta de cores {
-    color: #ffbc42;
-    color: #009765;
-    color: #4EC993;
-    color: #84FDC4;
-    color: #EEEEEE
-}
-
 .nav {
     height: 12%;
     border-top: solid 2px #EEEEEE;
 }
 .nav-item {
     align-self: center;
-
 }
 
 .icon {
     font-size: 40px;
     margin-bottom: 2px;
+}
+
+.menu-topo {
+    display: none;
 }
 
 }
@@ -68,11 +71,24 @@ html,body{
     
     }
 
-.menu-topo{
+.menu-topo {
+  padding-top: 2vw;
+  color: white;
+  font-size: 1vw;
+  padding: 1vw;
+
 
 }
 .menu-footer {
     display: none;
+}
+
+.icon {
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+.nav-item {
+    text-align: center;
 }
 }
 
