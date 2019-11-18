@@ -14,7 +14,7 @@ const getEvents = () => {
         arrayEvents.push(doc.data())        
         tamanho = arrayEvents.length;
       });
-    document.querySelector('main').innerHTML = Card(arrayEvents[index]);
+      document.querySelector('main').innerHTML = Card(arrayEvents[index]);
 })};
 
 hammer.on('swiperight', () => {
