@@ -1,3 +1,8 @@
+const hammer = new Hammer(document.querySelector('main'));
+let tamanho = 0;
+let index = 0;
+
+
 const cardsTemplate = (event) => {
   const template = `
     <article class="card card-size p-1 cards-background">
@@ -31,10 +36,25 @@ const getEvents = () => {
   firebase.firestore().collection('events')
     .get()
     .then((querySnapshot) => {
+      const arrayEvents = []
       querySnapshot.forEach((doc) => {
-        document.querySelector('main').innerHTML = cardsTemplate(doc.data());
-      });
+        arrayEvents.push(doc.data())        
+        tamanho = arrayEvents.length;
+      });  
+      document.querySelector('main').innerHTML = cardsTemplate(arrayEvents[index]); 
     });
 };
+
+
+hammer.on('swiperight', () => {
+  (index === tamanho - 1) ? index = 0 : index++;
+  getEvents();   
+})
+
+hammer.on('swipeleft', () => { 
+  (index === 0) ? index = tamanho -1 : index--;
+  getEvents();       
+})
+
 
 export default getEvents;
