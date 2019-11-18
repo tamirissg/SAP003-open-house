@@ -1,0 +1,29 @@
+.font-regular-size {
+    font-size: 0.8em;
+}
+
+.icon-small-size {
+    font-size: 1.2em;
+}
+
+.font-small-size {
+    font-size: 0.6em;
+}
+
+.icon-regular-size {
+    font-size: 1.5em;
+}
+
+.img-card {
+    height: 25vh;
+    object-fit: cover;
+    object-position: 0 80%
+}
+
+.card-size {
+    width: 18em;
+}
+
+.cards-background {
+    background-color: #84fdc4;
+}
