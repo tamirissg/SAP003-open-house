@@ -2,7 +2,6 @@ body {
  background-color: #EEEEE0;
 }
 
-/* CSS PERFIL*/
 .img-profile {
   border-radius: 50%;
   border: solid 2px #4FC993;
@@ -21,18 +20,123 @@ body {
   margin-top: 30px;
 }
 
-@media only screen and (max-width: 600px) {
-  .content-profile {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  .content {
-    padding: 10px;
-  }
+.content-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.content {
+  padding: 10px;
 }
 
-@media only screen and (min-width: 600px) {
+html,body{
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    background-color: #3C9865;
+    width: 100vw;
+    height: max-content;
+
+}
+
+.logo_img{
+    width: 35vw;
+    height: 20vw;
+
+}
+
+.nav {
+    height: max-content;
+}
+
+.nav-item {
+    align-self: center;
+}
+
+.icon {
+    font-size: 2vw;
+    margin-bottom: 2px;
+}
+
+.menu-topo {
+    display: none;
+}
+
+.font-regular-size {
+    font-size: 0.8em;
+}
+
+.icon-small-size {
+    font-size: 1.2em;
+}
+
+.font-small-size {
+    font-size: 0.6em;
+}
+
+.icon-regular-size {
+    font-size: 1.5em;
+}
+
+.img-card {
+    height: 25vh;
+    object-fit: cover;
+    object-position: 0 80%
+}
+
+.card-size {
+    width: 18em;
+}
+
+.cards-background {
+    background-color: #84fdc4 !important;
+}
+
+.arrow {
+    font-size: 4em;
+    color: #ffbc42;
+}
+
+@media (min-width: 900px) {
+     .card-size {
+         width: 450px;
+         height: max-content;
+     }
+
+     .img-card {
+         height: 50vh;
+     }
+
+     .arrow {
+        font-size: 10em;
+     }
+  
+    .logo_img {
+        width: 10vw;
+        height: 5vw;
+    }
+  
+    .menu-topo {
+      color: white;
+      display: flex;
+      width: max-content;
+    }
+    
+    .menu-footer {
+        display: none;
+    }
+  
+    .icon {
+        font-size: 20px;
+        margin-bottom: 2px;
+    }
+    
+    .nav-item {
+        text-align: center;
+    }
+  
   .content-two {
     display: flex;
     flex-direction: column;
@@ -65,19 +169,17 @@ body {
   .border-desktop {
     border-bottom: solid 1px #A8A99F;
   }
-}
 
-.icon {
-  color: #5D5D57;
-  font-size: 20px;
-  cursor: pointer;
+  .icon {
+    color: #5D5D57;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .options {
+    color:#5E5E57;
+    font-size: 24px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+  }
 }
-.options {
-  color:#5E5E57;
-  font-size: 24px;
-  display: inline-block;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* FIM DO CSS DO PERFIL */
