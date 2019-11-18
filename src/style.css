@@ -1,10 +1,33 @@
-/* paleta de cores {
-    color: #ffbc42;
-    color: #009765;
-    color: #4EC993;
-    color: #84FDC4;
-    color: #EEEEEE
-} */
+body {
+ background-color: #EEEEE0;
+}
+
+.img-profile {
+  border-radius: 50%;
+  border: solid 2px #4FC993;
+  margin-bottom: 18px;
+}
+.name-user {
+  color: #3C9865;
+  font-size: 4vw;
+  font-weight: bold;
+}
+.name {
+  display: inline-block;
+  vertical-align: top;
+}
+.all-content {
+  margin-top: 30px;
+}
+
+.content-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.content {
+  padding: 10px;
+}
 
 html,body{
     padding: 0;
@@ -113,4 +136,50 @@ html,body{
     .nav-item {
         text-align: center;
     }
+  
+  .content-two {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .content-one {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .border {
+    display: none;
+  }
+
+  .all-content {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+  }
+  .name {
+    display: block;
+  }
+  .border {
+    border-bottom: solid 1px #A8A99F;
+  }
+  .img-profile {
+    width: 180px;
+  }
+  .border-desktop {
+    border-bottom: solid 1px #A8A99F;
+  }
+
+  .icon {
+    color: #5D5D57;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .options {
+    color:#5E5E57;
+    font-size: 24px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+  }
 }
