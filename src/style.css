@@ -28,6 +28,11 @@
     background-color: #84fdc4;
 }
 
+.arrow {
+    font-size: 4em;
+    color: #ffbc42;
+}
+
 @media (min-width: 900px) {
      .card-size {
          width: 450px;
@@ -36,5 +41,9 @@
 
      .img-card {
          height: 50vh;
+     }
+
+     .arrow {
+        font-size: 10em;
      }
 }

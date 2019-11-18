@@ -1,5 +1,6 @@
 const Card = (props) => {
   const template = `
+  <i class="fas fa-angle-left arrow"></i>
     <article class="card card-size p-1 cards-background">
         <div class="d-flex justify-content-between p-2 bg-white">
             <div>
@@ -22,6 +23,7 @@ const Card = (props) => {
             </div>
         </div>
     </article>
+    <i class="fas fa-angle-right arrow"></i>
     `;
 
   return template;
