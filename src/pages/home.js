@@ -15,7 +15,7 @@ const getEvents = () => {
         tamanho = arrayEvents.length;
       });
     document.querySelector('main').innerHTML = Card(arrayEvents[index]);
-};
+})};
 
 hammer.on('swiperight', () => {
   (index === tamanho - 1) ? index = 0 : index++;
@@ -29,3 +29,4 @@ hammer.on('swipeleft', () => {
 
 
 export default getEvents;
+
