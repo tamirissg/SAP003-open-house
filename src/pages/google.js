@@ -1,4 +1,4 @@
-function loginGoogle() {
+const loginGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider)
     .then((currentUser) => {
@@ -7,9 +7,9 @@ function loginGoogle() {
         .then((snap) => {
           if (snap.size === 0) {
             const user = {
-              nome: currentUser.additionalUserInfo.profile.given_name,
-              sobrenome: currentUser.additionalUserInfo.profile.family_name,
+              nome: currentUser.displayName,
               user_uid: currentUser.user.uid,
+              id_save: [],
             };
             firebase.firestore().collection('users').add(user);
           }
@@ -18,6 +18,6 @@ function loginGoogle() {
           alert('Falha na autenticação');
         });
     });
-}
+};
 
 export default loginGoogle;

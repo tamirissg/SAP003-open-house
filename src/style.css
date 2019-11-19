@@ -266,6 +266,10 @@ html,body{
   animation: swipeLeft 0.7s linear forwards;
 }
 
+.types {
+  height: max-content;
+}
+
 @keyframes swipeRight {
   from {
       transform: rotate(0) translate(0)
