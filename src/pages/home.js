@@ -25,7 +25,7 @@ const moreInfo = (id) => {
 };
 
 const getEvents = () => {
-  firebase.firestore().collection('events').orderBy('date') 
+  firebase.firestore().collection('events')
     .get()
     .then((querySnapshot) => {
       const arrayEvents = []
@@ -37,7 +37,6 @@ const getEvents = () => {
         };
         arrayEvents.push(docEvent);
         tamanho = arrayEvents.length;
-
       });      
       document.querySelector('main').innerHTML = Card(arrayEvents[index], funcs);
 })};
@@ -52,6 +51,4 @@ const funcs = {
 hammer.on('swiperight', swipeRight);
 hammer.on('swipeleft', swipeLeft);
 
-
 export default funcs;
-
