@@ -4,14 +4,11 @@ import loginFacebook from './pages/facebook.js';
 
 getEvents();
 
-const checkUser = () => {
+const checkUser = (event) => {
   if (firebase.auth().currentUser == null) {
     $('#myModal').modal('show');
-    // $('#myModal').on('hidden.bs.modal', (e) => {
-    //   console.log('close modal');
-    // });
   } else {
-    console.log('go to profile');
+    console.log('go to', event.currentTarget.id)
   }
 };
 
