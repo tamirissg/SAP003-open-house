@@ -9,12 +9,12 @@ const main = document.querySelector('main');
 
 function init() {
   if (window.location.hash === '#profile') {
-    main.innerHTML = profile();
+    getProfile();
   } else if (window.location.hash === '#info') {
     main.innerHTML = Info();
-  } else if (location.hash === '') {
+  } else if (window.location.hash === '') {
     main.innerHTML = funcs.getEvents();
-  } else if (location.hash === '#saibamais') {
+  } else if (window.location.hash === '#saibamais') {
     main.innerHTML = funcs.moreInfo();
   } else {
     main.innerHTML = getMoreEvent(location.hash);
