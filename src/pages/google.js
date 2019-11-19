@@ -18,6 +18,6 @@ function loginGoogle() {
           alert('Falha na autenticação');
         });
     });
-};
+}
 
 export default loginGoogle;

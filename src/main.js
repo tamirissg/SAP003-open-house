@@ -35,6 +35,11 @@ const userBot = document.querySelector('.nav-user-bot');
 userTop.addEventListener('click', checkUser);
 userBot.addEventListener('click', checkUser);
 
+const bookmarkTop = document.querySelector('.nav-bookmark-top');
+const bookmarkBot = document.querySelector('.nav-bookmark-bot');
+bookmarkTop.addEventListener('click', checkUser);
+bookmarkBot.addEventListener('click', checkUser);
+
 const googleBtn = document.querySelector('.google-login');
 const facebookBtn = document.querySelector('.facebook-login');
 googleBtn.addEventListener('click', loginGoogle);
