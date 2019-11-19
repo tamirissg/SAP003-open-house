@@ -6,6 +6,7 @@ const openForm = (e) => {
 
 function Info() {
   const template = `
+<div>
     <article class="description">
       <h1>O Zero800</h1>
       <span> É uma plataforma que conecta pessoas aos mais extraordinários eventos gratuitos na cidade de São Paulo.
@@ -18,6 +19,7 @@ function Info() {
       <div class="container-button">
         ${Button({ title: 'Fale Conosco', class: 'button-info', onClick: openForm })}
       </div>
+</div>
     `;
   return template;
 }
