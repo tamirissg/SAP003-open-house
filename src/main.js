@@ -1,5 +1,5 @@
 import funcs from './pages/home.js';
-import profile from './pages/profile.js';
+import getProfile from './pages/profile.js';
 import Info from './pages/info.js';
 import getMoreEvent from './pages/moreinfoevent.js';
 import loginGoogle from './pages/google.js';
@@ -7,7 +7,8 @@ import loginFacebook from './pages/facebook.js';
 
 function init() {
   if (window.location.hash === '#profile') {
-    document.querySelector('main').innerHTML = profile();
+    document.querySelector('main').innerHTML = getProfile();
+
   } else if (window.location.hash === '#info') {
     document.querySelector('main').innerHTML = Info();
   } else if (location.hash === '') {
@@ -35,6 +36,7 @@ const signIn = () => {
   const password = document.querySelector('.input-password-login').value;
   firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
     $('#myModal').modal('hide');
+    window.location.hash = 'profile';
   }).catch((error) => {
     const errorCode = error.code;
     const errorMessage = document.querySelector('.error');
@@ -56,7 +58,7 @@ checkElements.forEach((element) => {
     if (firebase.auth().currentUser == null) {
       $('#myModal').modal('show');
     } else {
-      location.hash = event.target.id;
+      window.location.hash = event.currentTarget.id;
     }
   });
 });

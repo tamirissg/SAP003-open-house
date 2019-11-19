@@ -21,7 +21,7 @@ const swipeLeft = () => {
 };
 
 const moreInfo = (id) => {
-  location.hash = id;
+  window.location.hash = id;
 };
 
 const getEvents = () => {
