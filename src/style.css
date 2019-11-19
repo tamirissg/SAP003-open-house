@@ -113,6 +113,10 @@ html,body{
   height: 78vh;
 }
 
+.height-div {
+  height: 80%;
+}
+
 @media (min-width: 900px) {
      .card-size {
          width: 450px;
@@ -195,6 +199,31 @@ html,body{
     display: inline-block;
     cursor: pointer;
     font-weight: bold;
+  }
+
+  .card-desktop {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100vw;
+  } 
+
+  .img-desktop {
+    width: 50%;
+    height: 100%;
+    margin-right: 1%;
+    object-position: 70% 0;
+  }
+
+  #mapContainer {
+    height: 50%;
+  }
+
+  .big-title {
+    font-size: 1.3em;
+  }
+
+  .height-div {
+    height: 100%;
   }
 }
 
