@@ -10,12 +10,12 @@ function init() {
     document.querySelector('main').innerHTML = profile();
   } else if (window.location.hash === '#info') {
     document.querySelector('main').innerHTML = Info();
-  } else if (location.hash === '') {
+  } else if (window.location.hash === '') {
     document.querySelector('main').innerHTML = funcs.getEvents();
-  } else if (location.hash === '#saibamais') {
+  } else if (window.location.hash === '#saibamais') {
     document.querySelector('main').innerHTML = funcs.moreInfo();
   } else {
-    document.querySelector('main').innerHTML = getMoreEvent(location.hash);
+    document.querySelector('main').innerHTML = getMoreEvent(window.location.hash);
   }
 }
 
