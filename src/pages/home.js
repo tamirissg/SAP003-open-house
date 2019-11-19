@@ -20,6 +20,10 @@ const swipeLeft = () => {
   card.addEventListener('animationend', getEvents);
 };
 
+const moreInfo = (id) => {
+  location.hash = id;
+};
+
 const getEvents = () => {
   firebase.firestore().collection('events').orderBy('date') 
     .get()
@@ -35,12 +39,19 @@ const getEvents = () => {
         tamanho = arrayEvents.length;
 
       });      
-      document.querySelector('main').innerHTML = Card(arrayEvents[index], [swipeLeft, swipeRight]);
+      document.querySelector('main').innerHTML = Card(arrayEvents[index], funcs);
 })};
+
+const funcs = {
+  swipeLeft,
+  swipeRight,
+  moreInfo,
+  getEvents,
+};
 
 hammer.on('swiperight', swipeRight);
 hammer.on('swipeleft', swipeLeft);
 
 
+export default funcs;
 
-export default getEvents;
