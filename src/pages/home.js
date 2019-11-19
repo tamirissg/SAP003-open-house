@@ -1,6 +1,6 @@
 import Card from '../components/main-card.js';
 
-const hammer = new Hammer(document.querySelector('section'));
+const hammer = new Hammer(document.querySelector('main'));
 let tamanho = 0;
 let index = 0;
 let arrayIndex = 0;
