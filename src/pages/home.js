@@ -25,7 +25,7 @@ const moreInfo = (id) => {
 };
 
 const getEvents = () => {
-  firebase.firestore().collection('events')
+  firebase.firestore().collection('events').orderBy('date')
     .get()
     .then((querySnapshot) => {
       const arrayEvents = []
