@@ -1,6 +1,6 @@
 import Card from '../components/main-card.js';
 
-const hammer = new Hammer(document.querySelector('main'));
+const hammer = new Hammer(document.querySelector('section'));
 let tamanho = 0;
 let index = 0;
 let arrayIndex = 0;
@@ -28,7 +28,7 @@ const getEvents = () => {
   firebase.firestore().collection('events').orderBy('date')
     .get()
     .then((querySnapshot) => {
-      const arrayEvents = []
+      const arrayEvents = [];
       querySnapshot.forEach((doc) => {
         const docEvent = {
           ...doc.data(),

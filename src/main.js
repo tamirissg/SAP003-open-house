@@ -1,18 +1,21 @@
 import funcs from './pages/home.js';
 import profile from './pages/profile.js';
+import Info from './pages/info.js';
 import getMoreEvent from './pages/moreinfoevent.js';
 import loginGoogle from './pages/google.js';
 import loginFacebook from './pages/facebook.js';
 
 function init() {
-  if (location.hash === '#profile') {
+  if (window.location.hash === '#profile') {
     document.querySelector('main').innerHTML = profile();
+  } else if (window.location.hash === '#info') {
+    document.querySelector('main').innerHTML = Info();
   } else if (location.hash === '') {
     document.querySelector('main').innerHTML = funcs.getEvents();
   } else if (location.hash === '#saibamais') {
     document.querySelector('main').innerHTML = funcs.moreInfo();
   } else {
-    document.querySelector('main').innerHTML = getMoreEvent(location.hash);
+    getMoreEvent(location.hash);
   }
 }
 
@@ -20,19 +23,20 @@ window.addEventListener('hashchange', init);
 window.addEventListener('load', init);
 
 document.querySelector('.home').addEventListener('click', () => {
-  location.hash = '';
+  window.location.hash = '';
 });
 
 document.querySelector('.profile').addEventListener('click', () => {
-  location.hash = 'profile';
+    if (firebase.auth().currentUser == null) {
+      $('#myModal').modal('show');
+    } else {
+      location.hash = 'profile';
+    }
 });
-const checkUser = (event) => {
-  if (firebase.auth().currentUser == null) {
-    $('#myModal').modal('show');
-  } else {
-    console.log('go to', event.currentTarget.id);
-  }
-};
+
+document.querySelector('.info').addEventListener('click', () => {
+  window.location.hash = 'info';
+});
 
 const signIn = () => {
   const email = document.querySelector('.input-email-login').value;
