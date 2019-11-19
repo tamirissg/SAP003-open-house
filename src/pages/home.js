@@ -41,11 +41,31 @@ const getEvents = () => {
       document.querySelector('main').innerHTML = Card(arrayEvents[index], funcs);
 })};
 
+
+const save = (id) => {
+  const user = firebase.auth().currentUser.uid;
+
+  firebase.firestore().collection('users')
+  .get()
+  .then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      if (user === doc.data().user_uid) {
+        firebase.firestore().collection('users').doc(doc.id)
+        .update({
+          id_save: firebase.firestore.FieldValue.arrayUnion({
+          id}),
+        })        
+    }
+  }    
+  )});  
+};
+
 const funcs = {
   swipeLeft,
   swipeRight,
   moreInfo,
   getEvents,
+  save,
 };
 
 hammer.on('swiperight', swipeRight);

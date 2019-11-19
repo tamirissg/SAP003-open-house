@@ -10,6 +10,7 @@ function loginGoogle() {
               nome: currentUser.additionalUserInfo.profile.given_name,
               sobrenome: currentUser.additionalUserInfo.profile.family_name,
               user_uid: currentUser.user.uid,
+              id_save: [],
             };
             firebase.firestore().collection('users').add(user);
           }
