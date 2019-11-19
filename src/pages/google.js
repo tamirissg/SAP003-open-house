@@ -9,6 +9,7 @@ const loginGoogle = () => {
             const user = {
               nome: currentUser.displayName,
               user_uid: currentUser.user.uid,
+              id_save: [],
             };
             firebase.firestore().collection('users').add(user);
           }

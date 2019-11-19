@@ -5,30 +5,35 @@ import getMoreEvent from './pages/moreinfoevent.js';
 import loginGoogle from './pages/google.js';
 import loginFacebook from './pages/facebook.js';
 
+const main = document.querySelector('main');
+
 function init() {
   if (window.location.hash === '#profile') {
-    document.querySelector('main').innerHTML = getProfile();
-
+    main.innerHTML = profile();
   } else if (window.location.hash === '#info') {
-    document.querySelector('main').innerHTML = Info();
-  } else if (window.location.hash === '') {
-    document.querySelector('main').innerHTML = funcs.getEvents();
-  } else if (window.location.hash === '#saibamais') {
-    document.querySelector('main').innerHTML = funcs.moreInfo();
+    main.innerHTML = Info();
+  } else if (location.hash === '') {
+    main.innerHTML = funcs.getEvents();
+  } else if (location.hash === '#saibamais') {
+    main.innerHTML = funcs.moreInfo();
   } else {
-    document.querySelector('main').innerHTML = getMoreEvent(window.location.hash);
+    main.innerHTML = getMoreEvent(location.hash);
   }
 }
 
 window.addEventListener('hashchange', init);
 window.addEventListener('load', init);
 
-document.querySelector('.home').addEventListener('click', () => {
-  window.location.hash = '';
+document.querySelectorAll('.home').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    window.location.hash = '';
+  });
 });
 
-document.querySelector('.info').addEventListener('click', () => {
-  window.location.hash = 'info';
+document.querySelectorAll('.info').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    window.location.hash = 'info';
+  });
 });
 
 const signIn = () => {
