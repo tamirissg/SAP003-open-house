@@ -1,6 +1,6 @@
 import Card from '../components/main-card.js';
 
-const hammer = new Hammer(document.querySelector('main'));
+const hammer = new Hammer(document.querySelector('section'));
 let tamanho = 0;
 let index = 0;
 let arrayIndex = 0;
@@ -21,7 +21,7 @@ const swipeLeft = () => {
 };
 
 const getEvents = () => {
-  firebase.firestore().collection('events')
+  firebase.firestore().collection('events').orderBy('date') 
     .get()
     .then((querySnapshot) => {
       const arrayEvents = []
@@ -33,12 +33,14 @@ const getEvents = () => {
         };
         arrayEvents.push(docEvent);
         tamanho = arrayEvents.length;
+
       });      
       document.querySelector('main').innerHTML = Card(arrayEvents[index], [swipeLeft, swipeRight]);
 })};
 
 hammer.on('swiperight', swipeRight);
 hammer.on('swipeleft', swipeLeft);
+
 
 
 export default getEvents;
