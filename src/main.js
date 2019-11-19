@@ -11,12 +11,12 @@ function init() {
 
   } else if (window.location.hash === '#info') {
     document.querySelector('main').innerHTML = Info();
-  } else if (location.hash === '') {
+  } else if (window.location.hash === '') {
     document.querySelector('main').innerHTML = funcs.getEvents();
-  } else if (location.hash === '#saibamais') {
+  } else if (window.location.hash === '#saibamais') {
     document.querySelector('main').innerHTML = funcs.moreInfo();
   } else {
-    document.querySelector('main').innerHTML = getMoreEvent(location.hash);
+    document.querySelector('main').innerHTML = getMoreEvent(window.location.hash);
   }
 }
 
@@ -34,17 +34,18 @@ document.querySelector('.info').addEventListener('click', () => {
 const signIn = () => {
   const email = document.querySelector('.input-email-login').value;
   const password = document.querySelector('.input-password-login').value;
-  firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-    $('#myModal').modal('hide');
-    window.location.hash = 'profile';
-  }).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = document.querySelector('.error');
-    if (errorCode === 'auth/invalid-email') errorMessage.textContent = 'Email inválido';
-    if (errorCode === 'auth/user-disabled') errorMessage.textContent = 'Usuário desabilitado';
-    if (errorCode === 'auth/user-not-found') errorMessage.textContent = 'Usuário não encontrado';
-    if (errorCode === 'auth/wrong-password') errorMessage.textContent = 'Senha incorreta';
-  });
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => {
+      console.log('logado'); // não funciona para login normal
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = document.querySelector('.error');
+      if (errorCode === 'auth/invalid-email') errorMessage.textContent = 'Email inválido';
+      if (errorCode === 'auth/user-disabled') errorMessage.textContent = 'Usuário desabilitado';
+      if (errorCode === 'auth/user-not-found') errorMessage.textContent = 'Usuário não encontrado';
+      if (errorCode === 'auth/wrong-password') errorMessage.textContent = 'Senha incorreta';
+    });
 };
 
 const userTop = document.querySelector('.nav-user-top');
@@ -69,4 +70,4 @@ googleBtn.addEventListener('click', loginGoogle);
 facebookBtn.addEventListener('click', loginFacebook);
 
 const loginBtn = document.querySelector('.btn-submit-login');
-loginBtn.addEventListener('click', signIn);
+loginBtn.addEventListener('click', signIn());

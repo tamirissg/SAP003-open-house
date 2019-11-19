@@ -32,20 +32,18 @@ const getProfile = () => {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        document.querySelector('main').innerHTML = profile(doc.data())
+        document.querySelector('main').innerHTML = profile(doc.data());
       });
     })
     .then(() => {
-      const logoutBtn = document.querySelector('.logout')
+      const logoutBtn = document.querySelector('.logout');
       logoutBtn.addEventListener('click', () => {
         firebase.auth().signOut()
           .then(() => {
             window.location = '';
           });
-      })
-    })
+      });
+    });
 }
-
-
 
 export default getProfile;
