@@ -1,10 +1,10 @@
-function profile() {
+const profile = (props) => {
   const template = `
     <div class="all-content">
       <div class="content-one">
       <img  class="img-profile" src="./testeprofile.png" />
       <div class="name">
-        <span class="name-user">Fulana de tal</span>
+        <span class="name-user">${props.nome} ${props.sobrenome}</span>
       </div>
       </div>
       <div class="border"></div>
@@ -15,7 +15,7 @@ function profile() {
         <div class="border-desktop"></div>
         </div>
         <div class="border"></div>
-        <div class="content">
+        <div class="content logout">
           <i class="icon fas fa-sign-out-alt"></i>
           <span class="options">Logout</span>
         </div>
@@ -24,6 +24,25 @@ function profile() {
     </div>
   `;
   return template;
-}
+};
 
-export default profile;
+const getUser = () => {
+  const user = firebase.auth().currentUser.uid;
+
+  firebase.firestore().collection('users')
+    .where('user_uid', '==', user)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        document.querySelector('main').innerHTML = profile(doc.data());
+      });
+    })
+    // .then(() => {
+    //   document.querySelector('.logout').addEventListener('click', () => {
+    //     firebase.auth().signOut()
+    //       .then(location.hash = '');
+    //   });
+    // });
+};
+
+export default getUser;

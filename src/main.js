@@ -1,21 +1,24 @@
 import funcs from './pages/home.js';
-import profile from './pages/profile.js';
+import getUser from './pages/profile.js';
 import Info from './pages/info.js';
 import getMoreEvent from './pages/moreinfoevent.js';
 import loginGoogle from './pages/google.js';
 import loginFacebook from './pages/facebook.js';
+import getFavorites from './pages/favorites.js';
 
 const main = document.querySelector('main');
 
 function init() {
   if (window.location.hash === '#profile') {
-    main.innerHTML = profile();
+    getUser();
   } else if (window.location.hash === '#info') {
     main.innerHTML = Info();
   } else if (location.hash === '') {
     main.innerHTML = funcs.getEvents();
   } else if (location.hash === '#saibamais') {
     main.innerHTML = funcs.moreInfo();
+  } else if (location.hash === '#salvos') {
+      getFavorites();
   } else {
     main.innerHTML = getMoreEvent(location.hash);
   }
@@ -51,18 +54,12 @@ const signIn = () => {
   });
 };
 
-const userTop = document.querySelector('.nav-user-top');
-const userBot = document.querySelector('.nav-user-bot');
-const bookmarkTop = document.querySelector('.nav-bookmark-top');
-const bookmarkBot = document.querySelector('.nav-bookmark-bot');
-
-const checkElements = [userTop, userBot, bookmarkTop, bookmarkBot];
-checkElements.forEach((element) => {
+document.querySelectorAll('.login').forEach((element) => {
   element.addEventListener('click', (event) => {
     if (firebase.auth().currentUser == null) {
       $('#myModal').modal('show');
     } else {
-      location.hash = event.target.id;
+      location.hash = event.currentTarget.id;
     }
   });
 });

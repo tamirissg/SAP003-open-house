@@ -270,6 +270,18 @@ html,body{
   height: max-content;
 }
 
+.favorite-card-img {
+  width: 30%;
+}
+
+.favorite-card-body {
+  width: 70%;
+}
+
+.favorite-card-width {
+  width: 96vw;
+}
+
 @keyframes swipeRight {
   from {
       transform: rotate(0) translate(0)

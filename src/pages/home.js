@@ -14,7 +14,7 @@ const swipeRight = () => {
 };
 
 const swipeLeft = () => {
-  (index === 0) ? index = tamanho -1 : index--;
+  (index === 0) ? index = tamanho - 1 : index--;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-left';
   card.addEventListener('animationend', getEvents);
@@ -28,7 +28,7 @@ const getEvents = () => {
   firebase.firestore().collection('events').orderBy('date')
     .get()
     .then((querySnapshot) => {
-      const arrayEvents = []
+      const arrayEvents = [];
       querySnapshot.forEach((doc) => {
         const docEvent = {
           ...doc.data(),
@@ -37,27 +37,28 @@ const getEvents = () => {
         };
         arrayEvents.push(docEvent);
         tamanho = arrayEvents.length;
-      });      
+      });
       document.querySelector('main').innerHTML = Card(arrayEvents[index], funcs);
-})};
+    });
+};
 
 
 const save = (id) => {
   const user = firebase.auth().currentUser.uid;
 
   firebase.firestore().collection('users')
-  .get()
-  .then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      if (user === doc.data().user_uid) {
-        firebase.firestore().collection('users').doc(doc.id)
-        .update({
-          id_save: firebase.firestore.FieldValue.arrayUnion({
-          id}),
-        })        
-    }
-  }    
-  )});  
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (user === doc.data().user_uid) {
+          firebase.firestore().collection('users').doc(doc.id)
+            .update({
+              id_save: firebase.firestore.FieldValue.arrayUnion(id),
+            });
+        }
+      })
+      ;
+ });
 };
 
 const funcs = {
