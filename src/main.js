@@ -1,5 +1,5 @@
 import funcs from './pages/home.js';
-import profile from './pages/profile.js';
+import getProfile from './pages/profile.js';
 import Info from './pages/info.js';
 import getMoreEvent from './pages/moreinfoevent.js';
 import loginGoogle from './pages/google.js';
@@ -9,12 +9,12 @@ const main = document.querySelector('main');
 
 function init() {
   if (window.location.hash === '#profile') {
-    main.innerHTML = profile();
+    getProfile();
   } else if (window.location.hash === '#info') {
     main.innerHTML = Info();
-  } else if (location.hash === '') {
+  } else if (window.location.hash === '') {
     main.innerHTML = funcs.getEvents();
-  } else if (location.hash === '#saibamais') {
+  } else if (window.location.hash === '#saibamais') {
     main.innerHTML = funcs.moreInfo();
   } else {
     main.innerHTML = getMoreEvent(location.hash);
@@ -39,16 +39,18 @@ document.querySelectorAll('.info').forEach((btn) => {
 const signIn = () => {
   const email = document.querySelector('.input-email-login').value;
   const password = document.querySelector('.input-password-login').value;
-  firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-    $('#myModal').modal('hide');
-  }).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = document.querySelector('.error');
-    if (errorCode === 'auth/invalid-email') errorMessage.textContent = 'Email inválido';
-    if (errorCode === 'auth/user-disabled') errorMessage.textContent = 'Usuário desabilitado';
-    if (errorCode === 'auth/user-not-found') errorMessage.textContent = 'Usuário não encontrado';
-    if (errorCode === 'auth/wrong-password') errorMessage.textContent = 'Senha incorreta';
-  });
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => {
+      console.log('logado'); // não funciona para login normal
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = document.querySelector('.error');
+      if (errorCode === 'auth/invalid-email') errorMessage.textContent = 'Email inválido';
+      if (errorCode === 'auth/user-disabled') errorMessage.textContent = 'Usuário desabilitado';
+      if (errorCode === 'auth/user-not-found') errorMessage.textContent = 'Usuário não encontrado';
+      if (errorCode === 'auth/wrong-password') errorMessage.textContent = 'Senha incorreta';
+    });
 };
 
 const userTop = document.querySelector('.nav-user-top');
@@ -62,7 +64,7 @@ checkElements.forEach((element) => {
     if (firebase.auth().currentUser == null) {
       $('#myModal').modal('show');
     } else {
-      location.hash = event.target.id;
+      window.location.hash = event.currentTarget.id;
     }
   });
 });
@@ -73,4 +75,4 @@ googleBtn.addEventListener('click', loginGoogle);
 facebookBtn.addEventListener('click', loginFacebook);
 
 const loginBtn = document.querySelector('.btn-submit-login');
-loginBtn.addEventListener('click', signIn);
+loginBtn.addEventListener('click', signIn());
