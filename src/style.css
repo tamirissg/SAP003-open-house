@@ -1,5 +1,5 @@
 body {
- background-color: #EEEEE0;
+ background-color: #EEEEEE;
 }
 
 .img-profile {
@@ -27,6 +27,7 @@ body {
 }
 .content {
   padding: 10px;
+  width: 100vw;
 }
 
 html,body{
@@ -103,6 +104,24 @@ html,body{
     color: #ffbc42;
 }
 
+.moreinfo-card {
+  height: 16vh;
+  object-fit: cover;
+  object-position: 0 88%;
+}
+
+#mapContainer {
+  height: 28%;
+}
+
+.more-info {
+  height: 78vh;
+}
+
+.height-div {
+  height: 80%;
+}
+/* oi */
 @media (min-width: 900px) {
      .card-size {
          width: 450px;
@@ -151,6 +170,7 @@ html,body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 10px;
   }
   .border {
     display: none;
@@ -172,6 +192,7 @@ html,body{
   }
   .border-desktop {
     border-bottom: solid 1px #A8A99F;
+    
   }
 
   .icon {
@@ -186,6 +207,55 @@ html,body{
     cursor: pointer;
     font-weight: bold;
   }
+
+  .card-desktop {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100vw;
+  } 
+
+  .img-desktop {
+    width: 50%;
+    height: 100%;
+    margin-right: 1%;
+    object-position: 70% 0;
+  }
+
+  #mapContainer {
+    height: 50%;
+  }
+
+  .big-title {
+    font-size: 1.3em;
+  }
+
+  .height-div {
+    height: 100%;
+  }
+}
+
+.button-info {
+  background-color: #3C9865;
+  border: none;
+  color:#FFBC42;
+  font-weight: bold;
+  font-size: 22px;
+  padding: 8px 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 72px;
+  margin-top: 20px;
+}
+
+.description {
+  font-size: 20px;
+  text-align: justify;
+  padding: 10px 8px 8px;
+  font-weight: 500;
+}
+.container-button {
+  display: flex;
+  justify-content: center;
 }
 
 .swiping-right {
@@ -194,6 +264,10 @@ html,body{
 
 .swiping-left {
   animation: swipeLeft 0.7s linear forwards;
+}
+
+.types {
+  height: max-content;
 }
 
 @keyframes swipeRight {

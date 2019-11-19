@@ -6,17 +6,17 @@ let index = 0;
 let arrayIndex = 0;
 
 
-const swipeLeft = () => {
+const swipeRight = () => {
   (index === tamanho - 1) ? index = 0 : index++;
   const card = document.querySelector('article');
-  card.className = 'card card-size p-1 cards-background swiping-left';
+  card.className = 'card card-size p-1 cards-background swiping-right';
   card.addEventListener('animationend', getEvents);
 };
 
-const swipeRight = () => {
+const swipeLeft = () => {
   (index === 0) ? index = tamanho -1 : index--;
   const card = document.querySelector('article');
-  card.className = 'card card-size p-1 cards-background swiping-right';
+  card.className = 'card card-size p-1 cards-background swiping-left';
   card.addEventListener('animationend', getEvents);
 };
 
@@ -41,6 +41,7 @@ const getEvents = () => {
       document.querySelector('main').innerHTML = Card(arrayEvents[index], funcs);
 })};
 
+
 const save = (id) => {
   const user = firebase.auth().currentUser.uid;
 
@@ -57,14 +58,14 @@ const save = (id) => {
     }
   }    
   )});  
-}
+};
 
 const funcs = {
   swipeLeft,
   swipeRight,
   moreInfo,
   getEvents,
-  save,  
+  save,
 };
 
 hammer.on('swiperight', swipeRight);
