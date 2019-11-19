@@ -99,6 +99,20 @@ html,body{
     color: #ffbc42;
 }
 
+.moreinfo-card {
+  height: 16vh;
+  object-fit: cover;
+  object-position: 0 88%;
+}
+
+#mapContainer {
+  height: 28%;
+}
+
+.more-info {
+  height: 78vh;
+}
+
 @media (min-width: 900px) {
      .card-size {
          width: 450px;

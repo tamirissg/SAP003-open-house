@@ -10,7 +10,7 @@ function init() {
   } else if (location.hash === '#saibamais') {
     document.querySelector('main').innerHTML = funcs.moreInfo();
   } else {
-    document.querySelector('main').innerHTML = getMoreEvent(location.hash);
+    getMoreEvent(location.hash);
   }
 }
 
