@@ -65,6 +65,10 @@ html,body{
     display: none;
 }
 
+.form-control {
+    margin-bottom: 2%;
+}
+
 .font-regular-size {
     font-size: 0.8em;
 }
@@ -187,7 +191,6 @@ html,body{
   }
 }
 
-/* INICIO DO CSS FALE CONOSCO */
 .button-info {
   background-color: #3C9865;
   border: none;
@@ -212,4 +215,28 @@ html,body{
   justify-content: center;
 }
 
-/* FIM DO CSS FALE CONOSCO */
+.swiping-right {
+  animation: swipeRight 0.7s linear forwards;
+}
+
+.swiping-left {
+  animation: swipeLeft 0.7s linear forwards;
+}
+
+@keyframes swipeRight {
+  from {
+      transform: rotate(0) translate(0)
+  }
+  to {
+      transform: rotate(-9deg) translate(100vw)
+  }
+}
+
+@keyframes swipeLeft {
+  from {
+      transform: rotate(0) translate(0)
+  }
+  to {
+      transform: rotate(9deg) translate(-100vw)
+  }
+}
