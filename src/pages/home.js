@@ -41,11 +41,20 @@ const getEvents = () => {
       document.querySelector('main').innerHTML = Card(arrayEvents[index], funcs);
 })};
 
+const save = () => {
+  console.log(id)
+  firebase.firestore().collection('events').doc(id)
+  .get()
+  .then(doc => console.log(doc.data())) 
+  
+}
+
 const funcs = {
   swipeLeft,
   swipeRight,
   moreInfo,
   getEvents,
+  save,
 };
 
 hammer.on('swiperight', swipeRight);

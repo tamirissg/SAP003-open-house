@@ -7,7 +7,7 @@ const Card = (props, funcs) => {
                 <p class="font-regular-size m-0 font-weight-bold">Avaliações:</p>
             </div>
             <div>
-                <i class="far fa-bookmark icon-regular-size"></i>
+                <i class="far fa-bookmark icon-regular-size" onClick="a.handleClick(event,${funcs.save})" id=${props.id}></i>
             </div>
         </div>
         <img class="img-card my-1" src=${props.img} alt="Imagem de capa do card">
