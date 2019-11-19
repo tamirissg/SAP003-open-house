@@ -15,7 +15,7 @@ function init() {
   } else if (location.hash === '#saibamais') {
     document.querySelector('main').innerHTML = funcs.moreInfo();
   } else {
-    getMoreEvent(location.hash);
+    document.querySelector('main').innerHTML = getMoreEvent(location.hash);
   }
 }
 
