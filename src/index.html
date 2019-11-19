@@ -1,12 +1,16 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/cf7066dc16.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="category.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/cf7066dc16.js" crossorigin="anonymous"></script>
     <title>Zero800</title>
 </head>
@@ -15,6 +19,50 @@
 
     <header class="header d-flex justify-content-between align-items-center">
         <img src="img/logotipo.png" class="logo_img">
+    </header>
+    <section>
+
+        <div class="container-category">
+            <div class="div-category">
+                <a href="" class="a-category">
+                    <img src="img/tickets.png" alt="" class="img-category">
+                    <p class="p-category">Todos</p>
+                </a>
+            </div>
+            <div class="div-category">
+                <a href="" class="a-category">
+                    <img src="img/karaoke.png" alt="" class="img-category">
+                    <p class="p-category">Shows</p>
+                </a>
+            </div>
+            <div class="div-category">
+                 <a href="" class="a-category">
+                     <img src="img/theater.png" alt="" class="img-category">
+                     <p class="p-category">Teatro</p>
+               </a>
+            </div>
+            <div class="div-category">
+                <a href="" class="a-category">
+                    <img src="img/popcorn.png" alt="" class="img-category">
+                    <p class="p-category">Cinema</p>
+                </a>
+            </div>
+            <div class="div-category">
+                <a href="" class="a-category">
+                    <img src="img/stretching-exercises.png" alt="" class="img-category">
+                    <p class="p-category">Esporte</p>
+                </a>
+            </div>
+            <div class="div-category">
+                <a href="" class="a-category">
+                    <img src="img/museum.png" alt="" class="img-category">
+                    <p class="p-category">Arte</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section>
         <nav class="menu-topo">
             <a class="nav-item nav-link">
                 <div class='icon-regular-size'>
@@ -41,10 +89,15 @@
                 <div>Sobre</div>
             </a>
         </nav>
-    </header>
+    </section>
+
+
+
 
     <main class="d-flex justify-content-around align-items-center p-1"></main>
-    
+
+
+
     <footer class="menu-footer">
         <nav class="nav fixed-bottom nav nav-pills nav-justified border-top">
             <a class="nav-item nav-link ">
@@ -57,31 +110,41 @@
                 <div class='icon-regular-size'>
                     <i class="fas fa-user"></i>
                 </div>
-                <div>Perfil</div></a>
+                <div>Perfil</div>
+            </a>
             <a class="nav-item nav-link">
                 <div class='icon-regular-size'>
                     <i class="fas fa-bookmark"></i>
                 </div>
-                <div>Salvos</div></a>
+                <div>Salvos</div>
+            </a>
             <a class="nav-item nav-link">
                 <div class='icon-regular-size'>
                     <i class="fas fa-info"></i>
                 </div>
-                <div>Sobre</div></a>
-          </nav>
+                <div>Sobre</div>
+            </a>
+        </nav>
     </footer>
 
-        <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
-        <!-- TODO: Add SDKs for Firebase products that you want to use
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
-        <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-analytics.js"></script>
-        <script src="firestore-config.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
-        <script type="module" src="main.js"></script>
-    </body>
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-analytics.js"></script>
+    <script src="firestore-config.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+
 </html>
