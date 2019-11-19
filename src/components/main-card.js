@@ -1,6 +1,6 @@
-const Card = (props) => {
+const Card = (props, funcs) => {
   const template = `
-  <i class="fas fa-angle-left arrow"></i>
+  <i class="fas fa-angle-left arrow" onClick="a.handleClick(event,${funcs[0]})" data-id=${props.position}></i>
     <article class="card card-size p-1 cards-background">
         <div class="d-flex justify-content-between p-2 bg-white">
             <div>
@@ -17,16 +17,23 @@ const Card = (props) => {
                 <p class="card-text font-regular-size mb-1">${props.date} - ${props.hour}</p>
                 <p class="card-text text-truncate font-regular-size m-0"><i class="fas fa-map-marker-alt icon-small-size"></i> ${props.local}</p>
             </div>
-            <div class="d-flex align-items-center flex-column justify-content-around">
+            <div class="d-flex align-items-center flex-column justify-content-around" id=${props.id}>
                 <i class="fas fa-plus icon-regular-size"></i>
                 <p class="font-small-size text-center m-0">Saiba Mais</p>
             </div>
         </div>
     </article>
-    <i class="fas fa-angle-right arrow"></i>
+    <i class="fas fa-angle-right arrow" onClick="a.handleClick(event,${funcs[1]})" data-id=${props.position}></i>
     `;
 
   return template;
 };
+
+window.a = {
+  handleClick: (event, callBack) => {
+    callBack(event.target.dataset.id);
+  },
+};
+
 
 export default Card;

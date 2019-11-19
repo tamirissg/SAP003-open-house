@@ -183,3 +183,29 @@ html,body{
     font-weight: bold;
   }
 }
+
+.swiping-right {
+  animation: swipeRight 0.7s linear forwards;
+}
+
+.swiping-left {
+  animation: swipeLeft 0.7s linear forwards;
+}
+
+@keyframes swipeRight {
+  from {
+      transform: rotate(0) translate(0)
+  }
+  to {
+      transform: rotate(-9deg) translate(100vw)
+  }
+}
+
+@keyframes swipeLeft {
+  from {
+      transform: rotate(0) translate(0)
+  }
+  to {
+      transform: rotate(9deg) translate(-100vw)
+  }
+}
