@@ -28,7 +28,7 @@ const getEvents = () => {
   firebase.firestore().collection('events').orderBy('date')
     .get()
     .then((querySnapshot) => {
-      const arrayEvents = []
+      const arrayEvents = [];
       querySnapshot.forEach((doc) => {
         const docEvent = {
           ...doc.data(),
@@ -37,9 +37,10 @@ const getEvents = () => {
         };
         arrayEvents.push(docEvent);
         tamanho = arrayEvents.length;
-      });      
+      });
       document.querySelector('main').innerHTML = Card(arrayEvents[index], funcs);
-})};
+    });
+};
 
 const funcs = {
   swipeLeft,

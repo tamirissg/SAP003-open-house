@@ -24,7 +24,7 @@ const profile = (user) => {
     </div>
   `;
   return template;
-}
+};
 
 const getProfile = () => {
   const userId = firebase.auth().currentUser.uid;
@@ -44,6 +44,6 @@ const getProfile = () => {
           });
       });
     });
-}
+};
 
 export default getProfile;
