@@ -1,12 +1,12 @@
 import Card from '../components/main-card.js';
 
-const hammer = new Hammer(document.querySelector('main'));
+const hammer = new Hammer(document.querySelector('section'));
 let tamanho = 0;
 let index = 0;
 
 
 const getEvents = () => {
-  firebase.firestore().collection('events')
+  firebase.firestore().collection('events').orderBy('date') 
     .get()
     .then((querySnapshot) => {
       const arrayEvents = []
@@ -14,18 +14,19 @@ const getEvents = () => {
         arrayEvents.push(doc.data())        
         tamanho = arrayEvents.length;
       });
-    document.querySelector('main').innerHTML = Card(arrayEvents[index]);
-};
+    document.querySelector('section').innerHTML = Card(arrayEvents[index]);
+})};
 
-hammer.on('swiperight', () => {
+hammer.on('swipeleft', () => {
   (index === tamanho - 1) ? index = 0 : index++;
   getEvents();   
 });
 
-hammer.on('swipeleft', () => { 
+hammer.on('swiperight', () => { 
   (index === 0) ? index = tamanho -1 : index--;
   getEvents();       
 });
 
 
 export default getEvents;
+
