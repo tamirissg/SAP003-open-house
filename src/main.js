@@ -26,14 +26,6 @@ document.querySelector('.home').addEventListener('click', () => {
   window.location.hash = '';
 });
 
-document.querySelector('.profile').addEventListener('click', () => {
-    if (firebase.auth().currentUser == null) {
-      $('#myModal').modal('show');
-    } else {
-      location.hash = 'profile';
-    }
-});
-
 document.querySelector('.info').addEventListener('click', () => {
   window.location.hash = 'info';
 });
@@ -60,7 +52,13 @@ const bookmarkBot = document.querySelector('.nav-bookmark-bot');
 
 const checkElements = [userTop, userBot, bookmarkTop, bookmarkBot];
 checkElements.forEach((element) => {
-  element.addEventListener('click', checkUser);
+  element.addEventListener('click', (event) => {
+    if (firebase.auth().currentUser == null) {
+      $('#myModal').modal('show');
+    } else {
+      location.hash = event.target.id;
+    }
+  });
 });
 
 const googleBtn = document.querySelector('.google-login');
