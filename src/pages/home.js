@@ -7,8 +7,6 @@ let arrayIndex = 0;
 
 
 const swipeRight = () => {
-  console.log('direita');
-  
   (index === tamanho - 1) ? index = 0 : index++;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-right';
@@ -27,7 +25,7 @@ const moreInfo = (id) => {
 };
 
 const getEvents = () => {
-  firebase.firestore().collection('events')
+  firebase.firestore().collection('events').orderBy('date')
     .get()
     .then((querySnapshot) => {
       const arrayEvents = []
