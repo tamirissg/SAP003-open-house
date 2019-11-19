@@ -21,6 +21,7 @@
     width: 60%;
     align-items: center;
     margin-left: 5%;
+
     
 }
 .img-category:focus {
@@ -31,4 +32,11 @@
 .img-category:hover {
     background-color:#4EC993;
 
+}
+
+@media (min-width: 900px){
+
+    .container-category{
+        margin-bottom: 10%;
+    }
 }
