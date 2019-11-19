@@ -3,7 +3,6 @@ function loginFacebook() {
   firebase.auth().signInWithPopup(provider)
     .then((result) => {
 
-
     }).catch((error) => {
       alert('Falha na autenticação');
     });
