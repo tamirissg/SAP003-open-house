@@ -6,17 +6,17 @@ let index = 0;
 let arrayIndex = 0;
 
 
-const swipeRight = () => {
+const swipeLeft = () => {
   (index === tamanho - 1) ? index = 0 : index++;
   const card = document.querySelector('article');
-  card.className = 'card card-size p-1 cards-background swiping-right';
+  card.className = 'card card-size p-1 cards-background swiping-left';
   card.addEventListener('animationend', getEvents);
 };
 
-const swipeLeft = () => {
+const swipeRight = () => {
   (index === 0) ? index = tamanho -1 : index--;
   const card = document.querySelector('article');
-  card.className = 'card card-size p-1 cards-background swiping-left';
+  card.className = 'card card-size p-1 cards-background swiping-right';
   card.addEventListener('animationend', getEvents);
 };
 
@@ -25,7 +25,7 @@ const moreInfo = (id) => {
 };
 
 const getEvents = () => {
-  firebase.firestore().collection('events')
+  firebase.firestore().collection('events').orderBy('date')
     .get()
     .then((querySnapshot) => {
       const arrayEvents = []
