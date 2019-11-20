@@ -28,6 +28,7 @@ window.a = {
   handleClick: (event, callBack) => {  
     callBack(event.currentTarget);
   },
+  Card,
 };
 
 

@@ -3,20 +3,29 @@ import templateCategory from '../components/event-categories.js';
 
 const hammer = new Hammer(document.querySelector('main'));
 let index = 0;
+let tamanho = 0;
 
 const swipeRight = () => {
-  (index === data.tamanho - 1) ? index = 0 : index += 1;  
+  (index === tamanho - 1) ? index = 0 : index += 1;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-right';
-  card.addEventListener('animationend', getEvents);
+  if (tamanho !== 10) {
+    card.addEventListener('animationend', getCategory);
+  } else {
+    card.addEventListener('animationend', getEvents);
+  }
 };
 
 
 const swipeLeft = () => {
-  (index === 0) ? index = data.tamanho - 1 : index -= 1;
+  (index === 0) ? index = tamanho - 1 : index -= 1;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-left';
-  card.addEventListener('animationend', getEvents);
+  if (tamanho !== 10) {
+    card.addEventListener('animationend', getCategory);
+  } else {
+    card.addEventListener('animationend', getEvents);
+  }
 };
 
 const moreInfo = (target) => {
@@ -33,7 +42,6 @@ const getEvents = () => {
     .then((querySnapshot) => {
       window.data = {
         arrayEvents: [],
-        tamanho: 0,
       };
       querySnapshot.forEach((doc) => {
         const docEvent = {
@@ -42,15 +50,15 @@ const getEvents = () => {
           position: index,
         };
         data.arrayEvents.push(docEvent);
-        data.tamanho = data.arrayEvents.length;
+        tamanho = data.arrayEvents.length;
       });
       document.querySelector('.container-category').innerHTML = `
-      ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
-      ${templateCategory({ src: 'img/karaoke.png', title: 'Shows' })}
-      ${templateCategory({ src: 'img/theater.png', title: 'Teatro' })}
-      ${templateCategory({ src: 'img/popcorn.png', title: 'Cinema' })}
-      ${templateCategory({ src: 'img/stretching-exercises.png', title: 'Esporte' })}
-      ${templateCategory({ src: 'img/museum.png', title: 'Arte' })}
+      ${templateCategory({ src: 'img/tickets.png', onClick: getCategory, title: 'Todos' })}
+      ${templateCategory({ src: 'img/karaoke.png', onClick: getCategory, title: 'Shows' })}
+      ${templateCategory({ src: 'img/theater.png', onClick: getCategory, title: 'Teatro' })}
+      ${templateCategory({ src: 'img/popcorn.png', onClick: cinema, title: 'Cinema' })}
+      ${templateCategory({ src: 'img/stretching-exercises.png', onClick: getCategory, title: 'Esporte' })}
+      ${templateCategory({ src: 'img/museum.png', onClick: getCategory, title: 'Arte' })}
       `;
       main.innerHTML = Card(data.arrayEvents[index], funcs);
     });
@@ -74,6 +82,31 @@ const save = (id) => {
     });
 };
 
+const cinema = () => {
+  window.location.hash = '#Cinema';
+}
+
+const getCategory = () => {
+  // const category = event.originalTarget.innerText;
+  document.querySelector('main').innerHTML = '';
+
+  firebase.firestore().collection('events')
+    .where('type', '==', 'Cinema')
+    .get()
+    .then((querySnapshot) => {
+      const arrayfilter = [];
+      querySnapshot.forEach((doc) => {
+        const docEvent = {
+          ...doc.data(),
+          id: doc.id,
+          position: index,
+        };
+        arrayfilter.push(docEvent);
+        tamanho = arrayfilter.length;        
+      });
+      document.querySelector('main').innerHTML = Card(arrayfilter[index], funcs);
+    });
+};
 
 const funcs = {
   swipeLeft,
@@ -81,6 +114,7 @@ const funcs = {
   moreInfo,
   getEvents,
   save,
+  getCategory,
 };
 
 hammer.on('swiperight', swipeRight);

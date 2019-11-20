@@ -17,6 +17,8 @@ function init() {
     main.innerHTML = funcs.getEvents();
   } else if (window.location.hash === '#saibamais') {
     main.innerHTML = funcs.moreInfo();
+  } else if (window.location.hash === '#Cinema') {
+    funcs.getCategory();
   } else if (window.location.hash === '#salvos') {
     getFavorites();
   } else {

@@ -23,3 +23,32 @@
 [debug] [2019-11-20T13:39:24.272Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: src
 [info] +  hosting: Local server: http://localhost:5000
+[debug] [2019-11-20T20:07:38.913Z] ----------------------------------------------------------------------
+[debug] [2019-11-20T20:07:38.914Z] Command:       /usr/bin/node /usr/bin/firebase serve
+[debug] [2019-11-20T20:07:38.915Z] CLI Version:   7.6.2
+[debug] [2019-11-20T20:07:38.915Z] Platform:      linux
+[debug] [2019-11-20T20:07:38.915Z] Node Version:  v8.16.2
+[debug] [2019-11-20T20:07:38.915Z] Time:          Wed Nov 20 2019 17:07:38 GMT-0300 (-03)
+[debug] [2019-11-20T20:07:38.915Z] ----------------------------------------------------------------------
+[debug] [2019-11-20T20:07:38.915Z] 
+[debug] [2019-11-20T20:07:38.919Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-20T20:07:38.919Z] > authorizing via signed-in user
+[debug] [2019-11-20T20:07:38.919Z] [iam] checking project lab-open-house-6277 for permissions ["firebase.projects.get"]
+[debug] [2019-11-20T20:07:38.920Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-11-20T20:07:38.920Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-11-20T20:07:39.112Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-20T20:07:39.119Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lab-open-house-6277:testIamPermissions  
+
+[debug] [2019-11-20T20:07:39.533Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-20T20:07:39.536Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-open-house-6277  
+ 
+[debug] [2019-11-20T20:07:40.838Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/mi/Documentos/SAP003-open-house'...
+[info] 
+[debug] [2019-11-20T20:07:40.842Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-open-house-6277/webApps/-/config  
+ 
+[debug] [2019-11-20T20:07:42.399Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: src
+[info] ✔  hosting: Local server: http://localhost:5000
