@@ -68,7 +68,8 @@ document.querySelectorAll('.login').forEach((element) => {
 
 const register = () => {
   console.log('clicou')
-}
+  
+};
 
 const googleBtn = document.querySelector('.google-login');
 googleBtn.addEventListener('click', loginGoogle);
@@ -80,5 +81,4 @@ const loginBtn = document.querySelector('.btn-submit-login');
 loginBtn.addEventListener('click', signIn);
 
 const btnRegister = document.querySelector('.register')
-console.log(btnRegister)
 btnRegister.addEventListener('click', register);

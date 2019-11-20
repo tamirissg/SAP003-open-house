@@ -56,20 +56,42 @@ const getEvents = () => {
 
 
 const save = (id) => {
+  console.log(event.currentTarget);
   const user = firebase.auth().currentUser.uid;
-  document.querySelector('.save').classList.add('animated', 'tada');
-  firebase.firestore().collection('users')
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        if (user === doc.data().user_uid) {
-          firebase.firestore().collection('users').doc(doc.id)
-            .update({
-              id_save: firebase.firestore.FieldValue.arrayUnion(id),
-            });
-        }
+
+  if (event.currentTarget.classList.contains('far')) {
+    event.currentTarget.classList.add('fas');
+    event.currentTarget.classList.remove('far');
+    document.querySelector('.save').classList.add('animated', 'tada');
+    firebase.firestore().collection('users')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (user === doc.data().user_uid) {
+            firebase.firestore().collection('users').doc(doc.id)
+              .update({
+                id_save: firebase.firestore.FieldValue.arrayUnion(id),
+              });
+          }
+        });
       });
-    });
+  } else {
+    event.currentTarget.classList.add('far');
+    event.currentTarget.classList.remove('fas');
+    console.log('removeu dos favoritos')
+    firebase.firestore().collection('users')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (user === doc.data().user_uid) {
+            firebase.firestore().collection('users').doc(doc.id)
+              .update({
+                id_save: firebase.firestore.FieldValue.arrayRemove(id),
+              });
+          }
+        });
+      });
+  }
 };
 
 
