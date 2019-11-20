@@ -88,7 +88,7 @@ html,body{
 .img-card {
     height: 25vh;
     object-fit: cover;
-    object-position: 0 80%
+    object-position: 0 80%;
 }
 
 .card-size {
@@ -272,13 +272,15 @@ html,body{
 
 .favorite-card-img {
   width: 30%;
+  height: 17vh;
+  object-fit: cover;
 }
 
 .favorite-card-body {
-  width: 70%;
+  width: 69%;
 }
 
-.favorite-card-width {
+.favorite-card {
   width: 96vw;
 }
 
