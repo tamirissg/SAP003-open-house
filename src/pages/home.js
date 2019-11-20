@@ -1,5 +1,6 @@
 import Card from '../components/main-card.js';
 import templateCategory from '../components/event-categories.js';
+import getCategory from './category.js';
 
 const hammer = new Hammer(document.querySelector('main'));
 let tamanho = 0;
@@ -43,12 +44,12 @@ const getEvents = () => {
         tamanho = arrayEvents.length;
       });
       document.querySelector('.container-category').innerHTML = `
-      ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
-      ${templateCategory({ src: 'img/karaoke.png', title: 'Shows' })}
-      ${templateCategory({ src: 'img/theater.png', title: 'Teatro' })}
-      ${templateCategory({ src: 'img/popcorn.png', title: 'Cinema' })}
-      ${templateCategory({ src: 'img/stretching-exercises.png', title: 'Esporte' })}
-      ${templateCategory({ src: 'img/museum.png', title: 'Arte' })}
+      ${templateCategory({ src: 'img/tickets.png', onClick: getCategory, title: 'Todos' })}
+      ${templateCategory({ src: 'img/karaoke.png', onClick: getCategory, title: 'Shows' })}
+      ${templateCategory({ src: 'img/theater.png', onClick: getCategory, title: 'Teatro' })}
+      ${templateCategory({ src: 'img/popcorn.png', onClick: getCategory, title: 'Cinema' })}
+      ${templateCategory({ src: 'img/stretching-exercises.png', onClick: getCategory, title: 'Esporte' })}
+      ${templateCategory({ src: 'img/museum.png', onClick: getCategory, title: 'Arte' })}
       `;
       main.innerHTML = Card(arrayEvents[index], funcs);
     });
