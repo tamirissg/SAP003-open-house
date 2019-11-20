@@ -27,3 +27,28 @@
 [debug] [2019-11-20T21:25:51.679Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: src
 [info] +  hosting: Local server: http://localhost:5000
+[debug] [2019-11-20T22:33:08.879Z] ----------------------------------------------------------------------
+[debug] [2019-11-20T22:33:08.881Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-11-20T22:33:08.881Z] CLI Version:   7.7.0
+[debug] [2019-11-20T22:33:08.882Z] Platform:      win32
+[debug] [2019-11-20T22:33:08.882Z] Node Version:  v12.13.0
+[debug] [2019-11-20T22:33:08.882Z] Time:          Wed Nov 20 2019 20:33:08 GMT-0200 (GMT-02:00)
+[debug] [2019-11-20T22:33:08.882Z] ----------------------------------------------------------------------
+[debug] [2019-11-20T22:33:08.882Z] 
+[debug] [2019-11-20T22:33:08.888Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-20T22:33:08.889Z] > authorizing via signed-in user
+[debug] [2019-11-20T22:33:08.889Z] [iam] checking project lab-open-house-6277 for permissions ["firebase.projects.get"]
+[debug] [2019-11-20T22:33:08.891Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lab-open-house-6277:testIamPermissions  
+
+[debug] [2019-11-20T22:33:09.942Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-20T22:33:09.946Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-open-house-6277  
+ 
+[debug] [2019-11-20T22:33:11.317Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\admin\Documents\Projetos\SAP003-open-house'...
+[info] 
+[debug] [2019-11-20T22:33:11.324Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-open-house-6277/webApps/-/config  
+ 
+[debug] [2019-11-20T22:33:11.845Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: src
+[info] +  hosting: Local server: http://localhost:5000

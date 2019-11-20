@@ -5,7 +5,7 @@ const hammer = new Hammer(document.querySelector('main'));
 let index = 0;
 
 const swipeRight = () => {
-  (index === data.tamanho - 1) ? index = 0 : index += 1;  
+  (index === data.tamanho - 1) ? index = 0 : index += 1;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-right';
   card.addEventListener('animationend', getEvents);
@@ -24,7 +24,7 @@ const moreInfo = (target) => {
 };
 
 const getEvents = () => {
-  const main = document.querySelector('main'); 
+  const main = document.querySelector('main');
   document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.remove('hide'));
 
 
@@ -44,6 +44,7 @@ const getEvents = () => {
         data.arrayEvents.push(docEvent);
         data.tamanho = data.arrayEvents.length;
       });
+
       document.querySelector('.container-category').innerHTML = `
       ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
       ${templateCategory({ src: 'img/karaoke.png', title: 'Shows' })}
@@ -52,7 +53,22 @@ const getEvents = () => {
       ${templateCategory({ src: 'img/stretching-exercises.png', title: 'Esporte' })}
       ${templateCategory({ src: 'img/museum.png', title: 'Arte' })}
       `;
-      main.innerHTML = Card(data.arrayEvents[index], funcs);
+      const userUid = firebase.auth().currentUser.uid;
+      firebase.firestore().collection('users').where('user_uid', '==', userUid)
+        .get()
+        .then((query) => {
+          query.forEach((user) => {
+            const array = user.data().id_save;
+            array.forEach((id) => {
+              if (id === data.arrayEvents[index].id) {
+                console.log('esta salvo')
+                main.innerHTML = Card(data.arrayEvents[index], funcs)
+              }
+            });
+          });
+          console.log(data.arrayEvents[index].id);
+          // main.innerHTML = Card(data.arrayEvents[index], funcs);
+        });
     });
 };
 
@@ -80,7 +96,6 @@ const save = (id) => {
   } else {
     event.currentTarget.classList.add('far');
     event.currentTarget.classList.remove('fas');
-    console.log('removeu dos favoritos')
     firebase.firestore().collection('users')
       .get()
       .then((querySnapshot) => {
@@ -107,7 +122,7 @@ const funcs = {
 
 hammer.on('swiperight', swipeRight);
 hammer.on('swipeleft', swipeLeft);
-document.querySelector('.fa-angle-left').addEventListener('click', swipeLeft)
+document.querySelector('.fa-angle-left').addEventListener('click', swipeLeft);
 document.querySelector('.fa-angle-right').addEventListener('click', swipeRight);
 
 export default funcs;
