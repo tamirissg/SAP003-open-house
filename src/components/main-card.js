@@ -2,12 +2,9 @@ const Card = (props, funcs) => {
   const template = `
   <i class="fas fa-angle-left arrow" onClick="a.handleClick(event,${funcs.swipeLeft})" data-id=${props.position}></i>
     <article class="card card-size p-1 cards-background">
-        <div class="d-flex justify-content-between p-2 bg-white">
+        <div class="d-flex justify-content-end p-2 bg-white">
             <div>
-                <p class="font-regular-size m-0 font-weight-bold">Avaliações:</p>
-            </div>
-            <div>
-              <i class="far fa-bookmark icon-regular-size" onClick="a.handleClick(event,${funcs.save})" id=${props.id}></i>
+              <i class="far fa-bookmark icon-regular-size save" onClick="a.handleClick(event,${funcs.save})" id=${props.id}></i>
             </div>
         </div>
         <img class="img-card my-1" src=${props.img} alt="Imagem de capa do card">
@@ -31,7 +28,7 @@ const Card = (props, funcs) => {
 
 window.a = {
   handleClick: (event, callBack) => {
-    callBack(event.target.id);
+    callBack(event.currentTarget.id);
   },
 };
 
