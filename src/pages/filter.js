@@ -1,10 +1,13 @@
 import templateCategory from "./components/event-categories";
 
+
+let index = 0;
+
 const filterCategory = () => {
     const db = firebase.firestore().collection('events');
     const arrayType = []
-  const teste = 'Encontro';
-    db.where('region', '==', teste)
+  const teste = 'Arte';
+    db.where('type', '==', teste)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -21,11 +24,11 @@ const filterCategory = () => {
     });
   };
   
-  const showCategory = document.getElementById('select-section');
+ /*  const showCategory = document.getElementById('select-section');
     showCategory.addEventListener('change', () => {
       filterCategory();
     })
-  
+   */
 const type = {
     filterCategory,
 };

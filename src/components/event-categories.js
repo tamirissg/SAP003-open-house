@@ -1,10 +1,10 @@
 const templateCategory = (props) => {
   const template = `
     <div class="div-category">
-        <a href="" class="a-category">
+        <button class="b-category" >
             <img src=${props.src} alt="" class="img-category">
             <p class="p-category">${props.title}</p>
-        </a>
+        </button>
     </div>
     `;
   return template;
