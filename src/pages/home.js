@@ -48,6 +48,7 @@ const getEvents = () => {
       ${templateCategory({ src: 'img/museum.png', title: 'Arte' })}
       `;
       document.querySelector('main').innerHTML = Card(arrayEvents[index], funcs);
+      
     });
 };
 
