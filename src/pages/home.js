@@ -1,4 +1,5 @@
 import Card from '../components/main-card.js';
+import templateCategory from '../components/event-categories.js';
 
 const hammer = new Hammer(document.querySelector('main'));
 let tamanho = 0;
@@ -38,6 +39,14 @@ const getEvents = () => {
         arrayEvents.push(docEvent);
         tamanho = arrayEvents.length;
       });
+      document.querySelector('.container-category').innerHTML = `
+      ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
+      ${templateCategory({ src: 'img/karaoke.png', title: 'Shows' })}
+      ${templateCategory({ src: 'img/theater.png', title: 'Teatro' })}
+      ${templateCategory({ src: 'img/popcorn.png', title: 'Cinema' })}
+      ${templateCategory({ src: 'img/stretching-exercises.png', title: 'Esporte' })}
+      ${templateCategory({ src: 'img/museum.png', title: 'Arte' })}
+      `;
       document.querySelector('main').innerHTML = Card(arrayEvents[index], funcs);
     });
 };
@@ -57,7 +66,6 @@ const save = (id) => {
             });
         }
       })
-      ;
  });
 };
 
@@ -73,56 +81,4 @@ const funcs = {
 hammer.on('swiperight', swipeRight);
 hammer.on('swipeleft', swipeLeft);
 
-function templateCategory(){
-const template = `
-        <div class="container-category" class="grid">
-            <div class="div-category">
-                <a href="" class="a-category">
-                    <img src="img/tickets.png" alt="" class="img-category">
-                    <p class="p-category">Todos</p>
-                </a>
-            </div>
-            <div class="div-category">
-                <a href="" class="a-category">
-                    <img src="img/karaoke.png" alt="" class="img-category">
-                    <p class="p-category">Shows</p>
-                </a>
-            </div>
-            <div class="div-category">
-                <a href="" class="a-category">
-                    <img src="img/theater.png" alt="" class="img-category">
-                    <p class="p-category">Teatro</p>
-                </a>
-            </div>
-            <div class="div-category">
-                <a href="" class="a-category">
-                    <img src="img/popcorn.png" alt="" class="img-category">
-                    <p class="p-category">Cinema</p>
-                </a>
-            </div>
-            <div class="div-category">
-                <a href="" class="a-category">
-                    <img src="img/stretching-exercises.png" alt="" class="img-category">
-                    <p class="p-category">Esporte</p>
-                </a>
-            </div>
-            <div class="div-category">
-                <a href="" class="a-category">
-                    <img src="img/museum.png" alt="" class="img-category">
-                    <p class="p-category">Arte</p>
-                </a>
-            </div>
-    </div>
-  
-`;
-
-
-return document.getElementById('section-category').innerHTML = template;
-
-};
-
-templateCategory();
-
-
 export default funcs;
-
