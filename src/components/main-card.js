@@ -1,6 +1,5 @@
 const Card = (props, funcs) => {
   const template = `
-  <i class="fas fa-angle-left arrow" onClick="a.handleClick(event,${funcs.swipeLeft})" data-id=${props.position}></i>
     <article class="card card-size p-1 cards-background">
         <div class="d-flex justify-content-end p-2 bg-white">
             <div>
@@ -20,15 +19,14 @@ const Card = (props, funcs) => {
             </div>
         </div>
     </article>
-    <i class="fas fa-angle-right arrow" onClick="a.handleClick(event,${funcs.swipeRight})" data-id=${props.position}></i>
     `;
 
   return template;
 };
 
 window.a = {
-  handleClick: (event, callBack) => {
-    callBack(event.currentTarget.id);
+  handleClick: (event, callBack) => {  
+    callBack(event.currentTarget);
   },
 };
 

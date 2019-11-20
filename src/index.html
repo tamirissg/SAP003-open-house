@@ -52,7 +52,12 @@
     </header>
     
     <div class="container-category grid"></div>
-    <main class="d-flex justify-content-around align-items-center flex-wrap p-1 mb-5"></main>
+
+    <div class="d-flex justify-content-around align-items-center">
+        <i class="fas fa-angle-left arrow mb-5" data-id="0"></i>
+        <main class="d-flex justify-content-around align-items-center flex-wrap p-1 mb-5"></main>
+        <i class="fas fa-angle-right arrow mb-5" data-id="0"></i>
+    </div>
 
     <footer class="menu-footer">
         <nav class="nav fixed-bottom nav nav-pills nav-justified border-top bg-white">
@@ -112,7 +117,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Login with</h5>
+                <h5 class="modal-title">Login</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -123,16 +128,15 @@
                         <input type="email" class="form-control input-email-login" placeholder="Email">
                         <input type="password" class="form-control input-password-login" placeholder="Senha">
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-submit-login">Entrar</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-submit-login entry">Entrar</button>
                 </form>
             </div>
             <div class="modal-body text-center ">
-                <button type="button" class="btn btn-primary fab fa-google google-login rounded-circle"></button>
-                <button type="button" class="btn btn-primary fab fa-facebook-f facebook-login rounded-circle"></button>
+                <button type="button" class="primary-button fab fa-google google-login rounded-circle"></button>
+                <button type="button" class="primary-button fab fa-facebook-f facebook-login rounded-circle"></button>
             </div>
             <div class="border-top p-3 d-flex justify-content-center">
                 <p>Cadastre-se aqui</p>
-                <p>Divulgue seu evento aqui</p>
             </div>
         </div>
     </div>
