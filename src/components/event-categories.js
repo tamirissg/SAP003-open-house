@@ -3,8 +3,8 @@ const templateCategory = (props) => {
     <div class="div-category">
         <button class="b-category" >
             <img src=${props.src} alt="" class="img-category">
-            <p class="p-category">${props.title}</p>
         </button>
+           <a href="" class="a-category"><p class="p-category">${props.title}</p></a>
     </div>
     `;
   return template;
