@@ -19,6 +19,8 @@ const getMoreEvent = (id) => {
   const main = document.querySelector('main');
   const noHashId = id.replace(/#/, '');
   document.querySelector('.container-category').innerHTML = '';
+  document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.add('hide'));
+
   firebase.firestore().collection('events').doc(noHashId).get()
     .then((doc) => {
       main.innerHTML = moreInfoTemplate(doc.data()); 

@@ -2,45 +2,47 @@ import Card from '../components/main-card.js';
 import templateCategory from '../components/event-categories.js';
 
 const hammer = new Hammer(document.querySelector('main'));
-let tamanho = 0;
 let index = 0;
-let arrayIndex = 0;
-
 
 const swipeRight = () => {
-  (index === tamanho - 1) ? index = 0 : index += 1;
+  (index === data.tamanho - 1) ? index = 0 : index += 1;  
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-right';
   card.addEventListener('animationend', getEvents);
 };
 
+
 const swipeLeft = () => {
-  (index === 0) ? index = tamanho - 1 : index -= 1;
+  (index === 0) ? index = data.tamanho - 1 : index -= 1;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-left';
   card.addEventListener('animationend', getEvents);
 };
 
-const moreInfo = (id) => {
-  window.location.hash = id;
+const moreInfo = (target) => {
+  window.location.hash = target.id;
 };
 
 const getEvents = () => {
-  const main = document.querySelector('main');
-  main.classList.remove('flex-column');
+  const main = document.querySelector('main'); 
+  document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.remove('hide'));
+
 
   firebase.firestore().collection('events').orderBy('date')
     .get()
     .then((querySnapshot) => {
-      const arrayEvents = [];
+      window.data = {
+        arrayEvents: [],
+        tamanho: 0,
+      };
       querySnapshot.forEach((doc) => {
         const docEvent = {
           ...doc.data(),
           id: doc.id,
-          position: arrayIndex += 1,
+          position: index,
         };
-        arrayEvents.push(docEvent);
-        tamanho = arrayEvents.length;
+        data.arrayEvents.push(docEvent);
+        data.tamanho = data.arrayEvents.length;
       });
       document.querySelector('.container-category').innerHTML = `
       ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
@@ -50,7 +52,7 @@ const getEvents = () => {
       ${templateCategory({ src: 'img/stretching-exercises.png', title: 'Esporte' })}
       ${templateCategory({ src: 'img/museum.png', title: 'Arte' })}
       `;
-      main.innerHTML = Card(arrayEvents[index], funcs);
+      main.innerHTML = Card(data.arrayEvents[index], funcs);
     });
 };
 
@@ -105,5 +107,7 @@ const funcs = {
 
 hammer.on('swiperight', swipeRight);
 hammer.on('swipeleft', swipeLeft);
+document.querySelector('.fa-angle-left').addEventListener('click', swipeLeft)
+document.querySelector('.fa-angle-right').addEventListener('click', swipeRight);
 
 export default funcs;

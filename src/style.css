@@ -39,7 +39,11 @@ html,body{
     background-color: #3C9865;
     width: 100vw;
     height: max-content;
+}
 
+.entry {
+  background-color: #3C9865 !important;
+  border-color: #3C9865 !important;
 }
 
 .logo_img{
@@ -164,6 +168,37 @@ html,body{
   object-fit: cover;
 }
 
+.hide {
+  display: none !important;
+}
+
+.primary-button {
+  height: 6vh;
+  border: none;
+  width: 6vh;
+  color:white;
+}
+
+.google-login {
+  background-color: #DB4437;
+}
+
+.google-login:hover {
+  cursor: pointer;
+  background-color: #DB4437CF;
+  transition: 400ms;
+}
+
+.facebook-login {
+  background-color: #4267B2;
+}
+
+.facebook-login:hover {
+  cursor: pointer;
+  background-color: #4267B2D9;
+  transition: 400ms;
+}
+
 .favorite-card-body {
   width: 69%;
 }
@@ -224,26 +259,17 @@ html,body{
      text-align: center;
  }
 
-.content-two {
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
-}
 .content-one {
- display: flex;
- flex-direction: column;
- justify-content: center;
- margin-left: 10px;
+  padding-right: 80px;
+  padding-left: 60px;
 }
 .border {
  display: none;
 }
 
 .all-content {
- display: flex;
- justify-content: space-around;
- margin-top: 30px;
+ margin-top: 60px;
+ text-align: center;
 }
 .name {
  display: block;

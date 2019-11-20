@@ -20,8 +20,9 @@ const favoritesTemplate = (props) => {
 };
 
 const getFavorites = () => {
-  const user = firebase.auth().currentUser.uid;
+  const user = firebase.auth().currentUser.uid; 
   main.innerHTML = '';
+  document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.add('hide'));
 
   firebase.firestore().collection('users')
     .where('user_uid', '==', user)
