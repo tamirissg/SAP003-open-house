@@ -26,6 +26,9 @@ const moreInfo = (id) => {
 };
 
 const getEvents = () => {
+  const main = document.querySelector('main');
+  main.classList.remove('flex-column');
+
   firebase.firestore().collection('events').orderBy('date')
     .get()
     .then((querySnapshot) => {
@@ -47,14 +50,14 @@ const getEvents = () => {
       ${templateCategory({ src: 'img/stretching-exercises.png', title: 'Esporte' })}
       ${templateCategory({ src: 'img/museum.png', title: 'Arte' })}
       `;
-      document.querySelector('main').innerHTML = Card(arrayEvents[index], funcs);
-      
+      main.innerHTML = Card(arrayEvents[index], funcs);
     });
 };
 
 
 const save = (id) => {
   const user = firebase.auth().currentUser.uid;
+  document.querySelector('.save').classList.add('animated', 'tada');
   firebase.firestore().collection('users')
     .get()
     .then((querySnapshot) => {
