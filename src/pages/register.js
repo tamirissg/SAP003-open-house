@@ -12,7 +12,7 @@ const registerPage = () => {
     </form>
   `;
 
-  const main = document.querySelector('main')
+  const main = document.querySelector('main');
 
   const create = (event) => {
     event.preventDefault();
@@ -22,7 +22,6 @@ const registerPage = () => {
     const nome = document.querySelector('.nome-input').value;
     const errorMessage = document.querySelector('.error');
     if (nome === '' || email === '' || password === '') {
-      console.log('nome branco')
       errorMessage.textContent = 'Preencha os campos em branco';
     } else if (password !== passwordConfirmation) {
       errorMessage.textContent = 'Senha não confere';
@@ -59,4 +58,4 @@ const registerPage = () => {
   document.querySelector('.register-btn').addEventListener('click', create);
 };
 
-export default registerPage
+export default registerPage;

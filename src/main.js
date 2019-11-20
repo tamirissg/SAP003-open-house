@@ -42,12 +42,14 @@ document.querySelectorAll('.info').forEach((btn) => {
   });
 });
 
-const signIn = () => {
+const signIn = (e) => {
+  e.preventDefault();
   const email = document.querySelector('.input-email-login').value;
   const password = document.querySelector('.input-password-login').value;
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then(() => {
-      console.log('logado'); // não funciona para login normal
+      $('#myModal').modal('hide');
+      window.location.hash = 'profile';
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -71,7 +73,7 @@ document.querySelectorAll('.login').forEach((element) => {
 
 const register = () => {
   window.location.hash = 'register';
-}
+};
 
 const googleBtn = document.querySelector('.google-login');
 googleBtn.addEventListener('click', loginGoogle);
@@ -82,5 +84,5 @@ facebookBtn.addEventListener('click', loginFacebook);
 const loginBtn = document.querySelector('.btn-submit-login');
 loginBtn.addEventListener('click', signIn);
 
-const btnRegister = document.querySelector('.register')
+const btnRegister = document.querySelector('.register');
 btnRegister.addEventListener('click', register);
