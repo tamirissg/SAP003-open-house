@@ -17,10 +17,10 @@ function init() {
     main.innerHTML = funcs.getEvents();
   } else if (window.location.hash === '#saibamais') {
     main.innerHTML = funcs.moreInfo();
-  } else if (location.hash === '#salvos') {
-      getFavorites();
+  } else if (window.location.hash === '#salvos') {
+    getFavorites();
   } else {
-    main.innerHTML = getMoreEvent(location.hash);
+    main.innerHTML = getMoreEvent(window.location.hash);
   }
 }
 
@@ -61,7 +61,7 @@ document.querySelectorAll('.login').forEach((element) => {
     if (firebase.auth().currentUser == null) {
       $('#myModal').modal('show');
     } else {
-      location.hash = event.currentTarget.id;
+      window.location.hash = event.currentTarget.id;
     }
   });
 });
