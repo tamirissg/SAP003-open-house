@@ -23,7 +23,7 @@ function loginFacebook() {
         .catch(() => {
           alert('Falha na autenticação')
         });
-    };
+    });
 };
 
 export default loginFacebook;
