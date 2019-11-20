@@ -4,7 +4,7 @@ const profile = (props) => {
       <div class="content-one">
       <img  class="img-profile" src="./testeprofile.png" />
       <div class="name">
-        <span class="name-user">${props.nome} ${props.sobrenome}</span>
+        <span class="name-user">${props.nome}</span>
       </div>
       </div>
       <div class="border"></div>

@@ -6,17 +6,23 @@ function loginFacebook() {
       usersCollection.where('user_uid', '==', currentUser.user.uid).get()
         .then((snap) => {
           if (snap.size === 0) {
-            const user = {
-              nome: currentUser.displayName,
-              user_uid: currentUser.user.uid,
-            };
-            firebase.firestore().collection('users').add(user);
+            usersCollection.get()
+              .then(() => {
+                const user = {
+                  nome: currentUser.user.displayName,
+                  user_uid: currentUser.user.uid,
+                  id_save: [],
+                };
+                firebase.firestore().collection('users').add(user);
+              })
+              .then(() => {
+                $('#myModal').modal('hide');
+              })
           }
-          $('#myModal').modal('hide');
-        }).catch((error) => {
-          alert('Falha na autenticação');
+        }).catch(() => {
+          alert('Falha na autenticação')
         });
     });
-}
+};
 
 export default loginFacebook;

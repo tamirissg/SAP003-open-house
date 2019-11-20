@@ -1,29 +1,25 @@
-[debug] [2019-11-19T21:19:42.625Z] ----------------------------------------------------------------------
-[debug] [2019-11-19T21:19:42.628Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
-[debug] [2019-11-19T21:19:42.629Z] CLI Version:   7.7.0
-[debug] [2019-11-19T21:19:42.629Z] Platform:      win32
-[debug] [2019-11-19T21:19:42.629Z] Node Version:  v12.13.0
-[debug] [2019-11-19T21:19:42.629Z] Time:          Tue Nov 19 2019 19:19:42 GMT-0200 (GMT-02:00)
-[debug] [2019-11-19T21:19:42.630Z] ----------------------------------------------------------------------
-[debug] [2019-11-19T21:19:42.630Z] 
-[debug] [2019-11-19T21:19:42.640Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-11-19T21:19:42.641Z] > authorizing via signed-in user
-[debug] [2019-11-19T21:19:42.641Z] [iam] checking project lab-open-house-6277 for permissions ["firebase.projects.get"]
-[debug] [2019-11-19T21:19:42.643Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2019-11-19T21:19:42.644Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2019-11-19T21:19:42.837Z] <<< HTTP RESPONSE 200
-[debug] [2019-11-19T21:19:42.882Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lab-open-house-6277:testIamPermissions  
+[debug] [2019-11-20T13:39:20.453Z] ----------------------------------------------------------------------
+[debug] [2019-11-20T13:39:20.460Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-11-20T13:39:20.460Z] CLI Version:   7.7.0
+[debug] [2019-11-20T13:39:20.460Z] Platform:      win32
+[debug] [2019-11-20T13:39:20.460Z] Node Version:  v12.13.0
+[debug] [2019-11-20T13:39:20.461Z] Time:          Wed Nov 20 2019 11:39:20 GMT-0200 (GMT-02:00)
+[debug] [2019-11-20T13:39:20.461Z] ----------------------------------------------------------------------
+[debug] [2019-11-20T13:39:20.461Z] 
+[debug] [2019-11-20T13:39:20.480Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-20T13:39:20.482Z] > authorizing via signed-in user
+[debug] [2019-11-20T13:39:20.482Z] [iam] checking project lab-open-house-6277 for permissions ["firebase.projects.get"]
+[debug] [2019-11-20T13:39:20.487Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lab-open-house-6277:testIamPermissions  
 
-[debug] [2019-11-19T21:19:43.988Z] <<< HTTP RESPONSE 200
-[debug] [2019-11-19T21:19:43.991Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-open-house-6277  
+[debug] [2019-11-20T13:39:21.737Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-20T13:39:21.741Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-open-house-6277  
  
-[debug] [2019-11-19T21:19:45.335Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-20T13:39:22.791Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from 'C:\Users\admin\Documents\Projetos\SAP003-open-house'...
 [info] 
-[debug] [2019-11-19T21:19:45.343Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-open-house-6277/webApps/-/config  
+[debug] [2019-11-20T13:39:22.798Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-open-house-6277/webApps/-/config  
  
-[debug] [2019-11-19T21:19:45.810Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-20T13:39:24.272Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: src
 [info] +  hosting: Local server: http://localhost:5000
