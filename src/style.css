@@ -110,8 +110,8 @@ html,body{
   object-position: 0 88%;
 }
 
-#mapContainer {
-  height: 28%;
+.map-container {
+  height: 41%;
 }
 
 .more-info {

@@ -1,8 +1,9 @@
 import funcs from './home.js';
+const main = document.querySelector('main');
 
 const favoritesTemplate = (props) => {
   const template = `
-  <article class="card d-flex flex-row favorite-card p-1 cards-background">
+  <article class="card d-flex flex-row favorite-card p-1 mb-2 cards-background">
     <img src=${props.img} class="favorite-card-img">
     <div class="p-2 favorite-card-body bg-white ml-1">
       <h5 class="card-title text-truncate font-weight-bold font-regular-size mb-1">${props.title}</h5>
@@ -15,11 +16,13 @@ const favoritesTemplate = (props) => {
     </div>
 </article>
     `;
-return template;
+  return template;
 };
 
 const getFavorites = () => {
   const user = firebase.auth().currentUser.uid;
+  main.innerHTML = '';
+  main.classList.toggle('flex-column');
 
   firebase.firestore().collection('users')
     .where('user_uid', '==', user)
@@ -35,7 +38,7 @@ const getFavorites = () => {
                 ...querySnapshot2.data(),
                 id: doc.id,
               }
-              document.querySelector('main').innerHTML = favoritesTemplate(docEvent);
+              main.innerHTML += favoritesTemplate(docEvent);
             });
         });
       });
