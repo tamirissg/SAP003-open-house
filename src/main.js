@@ -5,6 +5,7 @@ import getMoreEvent from './pages/moreinfoevent.js';
 import loginGoogle from './pages/google.js';
 import loginFacebook from './pages/facebook.js';
 import getFavorites from './pages/favorites.js';
+import registerPage from './pages/register.js';
 
 const main = document.querySelector('main');
 
@@ -19,6 +20,8 @@ function init() {
     main.innerHTML = funcs.moreInfo();
   } else if (window.location.hash === '#salvos') {
     getFavorites();
+  } else if (window.location.hash === '#register') {
+    registerPage();
   } else {
     main.innerHTML = getMoreEvent(window.location.hash);
   }
@@ -67,7 +70,7 @@ document.querySelectorAll('.login').forEach((element) => {
 });
 
 const register = () => {
-  console.log('clicou')
+  window.location.hash = 'register';
 }
 
 const googleBtn = document.querySelector('.google-login');
@@ -80,5 +83,4 @@ const loginBtn = document.querySelector('.btn-submit-login');
 loginBtn.addEventListener('click', signIn);
 
 const btnRegister = document.querySelector('.register')
-console.log(btnRegister)
 btnRegister.addEventListener('click', register);
