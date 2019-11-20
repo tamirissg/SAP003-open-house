@@ -29,28 +29,12 @@
 
 }
 
-@media (min-width: 900px){
-
-    .container-category {
-        margin-bottom: 10%;
-    
-    }
-    
+@media (min-width: 900px){   
     .img-category{
         width: 40%;
-    }
+    }    
 
-  /*   .grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 30%;
-        text-align: center;
-        align-items: initial;
+    .container-category {
+        margin-top: 1%;
     }
-    
-    .grid-column-1 .item-1 {
-        grid-column: 2;
-    } 
-     */
-    
 }  
