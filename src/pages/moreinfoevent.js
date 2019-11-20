@@ -16,10 +16,12 @@ const moreInfoTemplate = (props) => {
 };
 
 const getMoreEvent = (id) => {
+  const main = document.querySelector('main');
   const noHashId = id.replace(/#/, '');
+  main.classList.remove('flex-column');
   firebase.firestore().collection('events').doc(noHashId).get()
     .then((doc) => {
-      document.querySelector('main').innerHTML = moreInfoTemplate(doc.data());     
+      main.innerHTML = moreInfoTemplate(doc.data()); 
       getMap(doc.data().location);
     });
 };
@@ -43,7 +45,7 @@ const getMap = (searchText) => {
     searchText,
   };
 
-  const onResult = function (result) {
+  const onResult = (result) => {
     const locations = result.Response.View[0].Result;
     let position;
     let marker;
@@ -59,11 +61,9 @@ const getMap = (searchText) => {
       map.addObject(marker);
     }
   };
-  
+
   const geocoder = platform.getGeocodingService();
   geocoder.geocode(geocodingParams, onResult);
 };
 
 export default getMoreEvent;
-
-//local falta são paulo, brazil

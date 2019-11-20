@@ -27,7 +27,6 @@ const moreInfo = (id) => {
 
 const getEvents = () => {
   const main = document.querySelector('main');
-
   main.classList.remove('flex-column');
 
   firebase.firestore().collection('events').orderBy('date')

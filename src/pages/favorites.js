@@ -22,7 +22,7 @@ const favoritesTemplate = (props) => {
 const getFavorites = () => {
   const user = firebase.auth().currentUser.uid;
   main.innerHTML = '';
-  main.classList.toggle('flex-column');
+  main.classList.add('flex-column');
 
   firebase.firestore().collection('users')
     .where('user_uid', '==', user)
@@ -36,13 +36,19 @@ const getFavorites = () => {
             .then((querySnapshot2) => {
               const docEvent = {
                 ...querySnapshot2.data(),
-                id: doc.id,
+                id: querySnapshot2.id,
               }
               main.innerHTML += favoritesTemplate(docEvent);
             });
         });
       });
     });
+};
+
+window.a = {
+  handleClick: (event, callBack) => {  
+    callBack(event.currentTarget.id);
+  },
 };
 
 export default getFavorites;

@@ -28,7 +28,7 @@ const Card = (props, funcs) => {
 
 window.a = {
   handleClick: (event, callBack) => {
-    callBack(event.target.id);
+    callBack(event.currentTarget.id);
   },
 };
 
