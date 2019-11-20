@@ -1,10 +1,10 @@
-const profile = (user) => {
+const profile = (props) => {
   const template = `
     <div class="all-content">
       <div class="content-one">
       <img  class="img-profile" src="./testeprofile.png" />
       <div class="name">
-        <span class="name-user">${user.nome} ${user.sobrenome}</span>
+        <span class="name-user">${props.nome} ${props.sobrenome}</span>
       </div>
       </div>
       <div class="border"></div>
@@ -26,9 +26,11 @@ const profile = (user) => {
   return template;
 };
 
-const getProfile = () => {
-  const userId = firebase.auth().currentUser.uid;
-  firebase.firestore().collection('users').where('user_uid', '==', userId)
+const getUser = () => {
+  const user = firebase.auth().currentUser.uid;
+
+  firebase.firestore().collection('users')
+    .where('user_uid', '==', user)
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
@@ -36,14 +38,13 @@ const getProfile = () => {
       });
     })
     .then(() => {
-      const logoutBtn = document.querySelector('.logout');
-      logoutBtn.addEventListener('click', () => {
+      document.querySelector('.logout').addEventListener('click', () => {
         firebase.auth().signOut()
-          .then(() => {
-            window.location = '';
+          .then(location.hash = '')
+          .catch((error) => {console.log(error);
           });
       });
     });
 };
 
-export default getProfile;
+export default getUser;

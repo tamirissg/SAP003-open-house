@@ -62,11 +62,10 @@ const save = (id) => {
         if (user === doc.data().user_uid) {
           firebase.firestore().collection('users').doc(doc.id)
             .update({
-              id_save: firebase.firestore.FieldValue.arrayUnion({id }),
+              id_save: firebase.firestore.FieldValue.arrayUnion(id),
             });
         }
-      },
-      );
+      })
  });
 };
 

@@ -65,9 +65,7 @@ const getMap = (searchText) => {
       map.addObject(marker);
     }
   };
-
-  console.log(searchText)
-
+  
   const geocoder = platform.getGeocodingService();
   geocoder.geocode(geocodingParams, onResult);
 };
