@@ -66,10 +66,19 @@ document.querySelectorAll('.login').forEach((element) => {
   });
 });
 
+const register = () => {
+  console.log('clicou')
+}
+
 const googleBtn = document.querySelector('.google-login');
-const facebookBtn = document.querySelector('.facebook-login');
 googleBtn.addEventListener('click', loginGoogle);
+
+const facebookBtn = document.querySelector('.facebook-login');
 facebookBtn.addEventListener('click', loginFacebook);
 
 const loginBtn = document.querySelector('.btn-submit-login');
-loginBtn.addEventListener('click', signIn());
+loginBtn.addEventListener('click', signIn);
+
+const btnRegister = document.querySelector('.register')
+console.log(btnRegister)
+btnRegister.addEventListener('click', register);
