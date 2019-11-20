@@ -13,9 +13,9 @@ function init() {
     getUser();
   } else if (window.location.hash === '#info') {
     main.innerHTML = Info();
-  } else if (location.hash === '') {
+  } else if (window.location.hash === '') {
     main.innerHTML = funcs.getEvents();
-  } else if (location.hash === '#saibamais') {
+  } else if (window.location.hash === '#saibamais') {
     main.innerHTML = funcs.moreInfo();
   } else if (location.hash === '#salvos') {
       getFavorites();
@@ -42,16 +42,18 @@ document.querySelectorAll('.info').forEach((btn) => {
 const signIn = () => {
   const email = document.querySelector('.input-email-login').value;
   const password = document.querySelector('.input-password-login').value;
-  firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-    $('#myModal').modal('hide');
-  }).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = document.querySelector('.error');
-    if (errorCode === 'auth/invalid-email') errorMessage.textContent = 'Email inválido';
-    if (errorCode === 'auth/user-disabled') errorMessage.textContent = 'Usuário desabilitado';
-    if (errorCode === 'auth/user-not-found') errorMessage.textContent = 'Usuário não encontrado';
-    if (errorCode === 'auth/wrong-password') errorMessage.textContent = 'Senha incorreta';
-  });
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => {
+      console.log('logado'); // não funciona para login normal
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = document.querySelector('.error');
+      if (errorCode === 'auth/invalid-email') errorMessage.textContent = 'Email inválido';
+      if (errorCode === 'auth/user-disabled') errorMessage.textContent = 'Usuário desabilitado';
+      if (errorCode === 'auth/user-not-found') errorMessage.textContent = 'Usuário não encontrado';
+      if (errorCode === 'auth/wrong-password') errorMessage.textContent = 'Senha incorreta';
+    });
 };
 
 document.querySelectorAll('.login').forEach((element) => {
@@ -70,4 +72,4 @@ googleBtn.addEventListener('click', loginGoogle);
 facebookBtn.addEventListener('click', loginFacebook);
 
 const loginBtn = document.querySelector('.btn-submit-login');
-loginBtn.addEventListener('click', signIn);
+loginBtn.addEventListener('click', signIn());
