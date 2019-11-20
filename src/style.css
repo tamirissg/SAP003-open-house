@@ -224,26 +224,17 @@ html,body{
      text-align: center;
  }
 
-.content-two {
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
-}
 .content-one {
- display: flex;
- flex-direction: column;
- justify-content: center;
- margin-left: 10px;
+  padding-right: 80px;
+  padding-left: 60px;
 }
 .border {
  display: none;
 }
 
 .all-content {
- display: flex;
- justify-content: space-around;
- margin-top: 30px;
+ margin-top: 60px;
+ text-align: center;
 }
 .name {
  display: block;
