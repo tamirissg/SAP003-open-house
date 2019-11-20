@@ -8,14 +8,14 @@ let arrayIndex = 0;
 
 
 const swipeRight = () => {
-  (index === tamanho - 1) ? index = 0 : index++;
+  (index === tamanho - 1) ? index = 0 : index += 1;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-right';
   card.addEventListener('animationend', getEvents);
 };
 
 const swipeLeft = () => {
-  (index === 0) ? index = tamanho - 1 : index--;
+  (index === 0) ? index = tamanho - 1 : index -= 1;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-left';
   card.addEventListener('animationend', getEvents);
@@ -34,7 +34,7 @@ const getEvents = () => {
         const docEvent = {
           ...doc.data(),
           id: doc.id,
-          position: arrayIndex++,
+          position: arrayIndex += 1,
         };
         arrayEvents.push(docEvent);
         tamanho = arrayEvents.length;
@@ -54,7 +54,6 @@ const getEvents = () => {
 
 const save = (id) => {
   const user = firebase.auth().currentUser.uid;
-
   firebase.firestore().collection('users')
     .get()
     .then((querySnapshot) => {
@@ -65,8 +64,8 @@ const save = (id) => {
               id_save: firebase.firestore.FieldValue.arrayUnion(id),
             });
         }
-      })
- });
+      });
+    });
 };
 
 

@@ -40,7 +40,7 @@ const getUser = () => {
     .then(() => {
       document.querySelector('.logout').addEventListener('click', () => {
         firebase.auth().signOut()
-          .then(location.hash = '')
+          .then(window.location.hash = '')
           .catch((error) => {console.log(error);
           });
       });
