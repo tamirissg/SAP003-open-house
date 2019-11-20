@@ -37,12 +37,14 @@ const getUser = () => {
         document.querySelector('main').innerHTML = profile(doc.data());
       });
     })
-    // .then(() => {
-    //   document.querySelector('.logout').addEventListener('click', () => {
-    //     firebase.auth().signOut()
-    //       .then(location.hash = '');
-    //   });
-    // });
+    .then(() => {
+      document.querySelector('.logout').addEventListener('click', () => {
+        firebase.auth().signOut()
+          .then(location.hash = '')
+          .catch((error) => {console.log(error);
+          });
+      });
+    });
 };
 
 export default getUser;
