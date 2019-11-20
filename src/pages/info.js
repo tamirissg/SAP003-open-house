@@ -1,5 +1,5 @@
 function Info() {
-  document.querySelector('main').classList.remove('flex-column');
+  document.querySelector('.container-category').innerHTML = '';
   const template = `
 <div>
     <article class="description">

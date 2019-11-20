@@ -18,7 +18,7 @@ const moreInfoTemplate = (props) => {
 const getMoreEvent = (id) => {
   const main = document.querySelector('main');
   const noHashId = id.replace(/#/, '');
-  main.classList.remove('flex-column');
+  document.querySelector('.container-category').innerHTML = '';
   firebase.firestore().collection('events').doc(noHashId).get()
     .then((doc) => {
       main.innerHTML = moreInfoTemplate(doc.data()); 

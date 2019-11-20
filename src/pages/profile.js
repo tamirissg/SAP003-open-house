@@ -29,8 +29,7 @@ const profile = (props) => {
 const getUser = () => {
   const main = document.querySelector('main');
   const user = firebase.auth().currentUser.uid;
-  main.classList.remove('flex-column');
-
+  document.querySelector('.container-category').innerHTML = '';
 
   firebase.firestore().collection('users')
     .where('user_uid', '==', user)

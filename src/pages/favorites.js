@@ -22,7 +22,6 @@ const favoritesTemplate = (props) => {
 const getFavorites = () => {
   const user = firebase.auth().currentUser.uid;
   main.innerHTML = '';
-  main.classList.add('flex-column');
 
   firebase.firestore().collection('users')
     .where('user_uid', '==', user)
