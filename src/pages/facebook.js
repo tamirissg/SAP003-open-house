@@ -14,12 +14,13 @@ function loginFacebook() {
                   id_save: [],
                 };
                 firebase.firestore().collection('users').add(user);
-              })
-              .then(() => {
-                $('#myModal').modal('hide');
-              })
+              });
           }
-        }).catch(() => {
+        })
+        .then(() => {
+          $('#myModal').modal('hide');
+        })
+        .catch(() => {
           alert('Falha na autenticação')
         });
     });
