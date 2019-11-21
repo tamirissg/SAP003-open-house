@@ -47,19 +47,21 @@
     
     .container-category {
         margin-bottom: 10%;
-        display: flex;
+       
         align-items: center;
         justify-content: space-between;
     
     }
     
-    .img-category{
-        width: 70%;
+    .img-category {
+        Height: 75%;
+        width: 75%;
+        object-fit: scale-down;
     }
 
     .b-category {
-        width: 65%;
-        height: 95px
+        width: 40%;
+        height: 70px
     }
 
     .p-category {
