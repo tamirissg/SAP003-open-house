@@ -13,7 +13,7 @@ const Card = (props, funcs) => {
                 <p class="card-text font-regular-size mb-1">${props.date} - ${props.hour}</p>
                 <p class="card-text text-truncate font-regular-size m-0"><i class="fas fa-map-marker-alt icon-small-size"></i> ${props.local}</p>
             </div>
-            <div class="d-flex align-items-center flex-column justify-content-around" id=${props.id} onClick="a.handleClick(event,${funcs.moreInfo})">
+            <div class="d-flex align-items-center flex-column justify-content-around" id=${props.id} onClick="main.handleClick(event,${funcs.moreInfo})">
                 <i class="fas fa-plus icon-regular-size"></i>
                 <p class="font-small-size text-center m-0">Saiba Mais</p>
             </div>

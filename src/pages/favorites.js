@@ -48,7 +48,7 @@ const getFavorites = () => {
 
 window.favorites = {
   handleClick: (event, callBack) => {  
-    callBack(event.currentTarget.id);
+    callBack(event.currentTarget);
   },
 };
 
