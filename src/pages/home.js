@@ -21,7 +21,7 @@ const swipeRight = () => {
   if (tamanho !== 11) {
     card.addEventListener('animationend', checkFilter);
   } else {
-    card.addEventListener('animationend', getEvents(window.location.hash));
+    card.addEventListener('animationend', getEvents);
   }
 };
 
