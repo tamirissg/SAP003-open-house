@@ -27,21 +27,25 @@ const profile = (props) => {
 };
 
 const getUser = () => {
+  const main = document.querySelector('main');
   const user = firebase.auth().currentUser.uid;
+  document.querySelector('.container-category').innerHTML = '';
+  document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.add('hide'));
 
   firebase.firestore().collection('users')
     .where('user_uid', '==', user)
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        document.querySelector('main').innerHTML = profile(doc.data());
+        main.innerHTML = profile(doc.data());
       });
     })
     .then(() => {
       document.querySelector('.logout').addEventListener('click', () => {
         firebase.auth().signOut()
           .then(window.location.hash = '')
-          .catch((error) => {console.log(error);
+          .catch((error) => { 
+            console.log(error);
           });
       });
     });

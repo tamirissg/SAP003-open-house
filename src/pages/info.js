@@ -1,10 +1,8 @@
-import Button from '../components/button.js';
-
-const openForm = (e) => {
-  console.log("form aberto")
-};
-
 function Info() {
+  document.querySelector('.container-category').innerHTML = '';
+  document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.add('hide'));
+  
+
   const template = `
 <div>
     <article class="description">
@@ -15,10 +13,6 @@ function Info() {
       </span>
       <p> Zero800 a melhor plataforma de busca!</p>
       </article>
-      <div class="border"></div>
-      <div class="container-button">
-        ${Button({ title: 'Fale Conosco', class: 'button-info', onClick: openForm })}
-      </div>
 </div>
     `;
   return template;
