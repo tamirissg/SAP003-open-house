@@ -33,7 +33,7 @@ const moreInfo = (target) => {
 };
 
 const getEvents = () => {
-  const main = document.querySelector('main'); 
+  const main = document.querySelector('main');
   document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.remove('hide'));
 
 
@@ -49,9 +49,10 @@ const getEvents = () => {
           id: doc.id,
           position: index,
         };
-        data.arrayEvents.push(docEvent);
-        data.tamanho = data.arrayEvents.length;
+        window.data.arrayEvents.push(docEvent);
+        window.data.tamanho = window.data.arrayEvents.length;
       });
+
       document.querySelector('.container-category').innerHTML = `
       ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
       ${templateCategory({ src: 'img/karaoke.png', title: 'Show' })}
@@ -60,7 +61,21 @@ const getEvents = () => {
       ${templateCategory({ src: 'img/stretching-exercises.png', title: 'Esporte' })}
       ${templateCategory({ src: 'img/museum.png', title: 'Arte' })}
       `;
-      main.innerHTML = Card(data.arrayEvents[index], funcs);
+      const userUid = firebase.auth().currentUser.uid;
+      firebase.firestore().collection('users').where('user_uid', '==', userUid)
+        .get()
+        .then((query) => {
+          query.forEach((user) => {
+            main.innerHTML = Card(window.data.arrayEvents[index], funcs);
+            const arraySalvos = user.data().id_save;
+
+            if (arraySalvos.includes(window.data.arrayEvents[index].id)) {
+              const bookmark = document.querySelector('.save');
+              bookmark.classList.add('fas');
+              bookmark.classList.remove('far');
+            }
+          });
+        });
     });
 };
 
@@ -81,19 +96,39 @@ const share = () => {
 
 const save = (id) => {
   const user = firebase.auth().currentUser.uid;
-  document.querySelector('.save').classList.add('animated', 'tada');
-  firebase.firestore().collection('users')
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        if (user === doc.data().user_uid) {
-          firebase.firestore().collection('users').doc(doc.id)
-            .update({
-              id_save: firebase.firestore.FieldValue.arrayUnion(id),
-            });
-        }
+  const bookmark = document.getElementById(id);
+  if (bookmark.classList.contains('far')) {
+    bookmark.classList.add('fas');
+    bookmark.classList.remove('far');
+    document.querySelector('.save').classList.add('animated', 'tada');
+    firebase.firestore().collection('users')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (user === doc.data().user_uid) {
+            firebase.firestore().collection('users').doc(doc.id)
+              .update({
+                id_save: firebase.firestore.FieldValue.arrayUnion(id),
+              });
+          }
+        });
       });
-    });
+  } else {
+    bookmark.currentTarget.classList.add('far');
+    bookmark.currentTarget.classList.remove('fas');
+    firebase.firestore().collection('users')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (user === doc.data().user_uid) {
+            firebase.firestore().collection('users').doc(doc.id)
+              .update({
+                id_save: firebase.firestore.FieldValue.arrayRemove(id),
+              });
+          }
+        });
+      });
+  }
 };
 
 const getCategory = (hash) => {
@@ -138,7 +173,7 @@ const funcs = {
 
 hammer.on('swiperight', swipeRight);
 hammer.on('swipeleft', swipeLeft);
-document.querySelector('.fa-angle-left').addEventListener('click', swipeLeft)
+document.querySelector('.fa-angle-left').addEventListener('click', swipeLeft);
 document.querySelector('.fa-angle-right').addEventListener('click', swipeRight);
 
 export default funcs;

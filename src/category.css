@@ -31,10 +31,11 @@
 
 @media (min-width: 900px){   
     .img-category{
-        width: 40%;
+        width: 30%;
     }    
 
     .container-category {
-        margin-top: 1%;
+        margin-top: 8px;
+        
     }
 }  
