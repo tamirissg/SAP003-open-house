@@ -9,7 +9,7 @@ const profile = (props) => {
       </div>
       <div class="border"></div>
       <div class="content-two">
-        <div class="content">
+        <div class="content edit-profile">
         <i class="icon fas fa-pencil-alt"></i>
         <span class="options"> Editar perfil</san>
         <div class="border-desktop"></div>
@@ -43,10 +43,11 @@ const getUser = () => {
     .then(() => {
       document.querySelector('.logout').addEventListener('click', () => {
         firebase.auth().signOut()
-          .then(window.location.hash = '')
-          .catch((error) => { 
-            console.log(error);
-          });
+          .then(window.location.hash = '');
+      });
+      document.querySelector('.edit-profile').addEventListener('click', () => {
+        console.log('editar');
+        $('#edit-name').modal('show');
       });
     });
 };
