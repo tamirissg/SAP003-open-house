@@ -1,5 +1,6 @@
 const registerPage = () => {
   const template = `
+  <h3 class='mb-3'>Seja bem vindo(a)!</h3>
     <form>
       <div class="form-group">
         <input type="text" class="form-control nome-input" placeholder="Nome e Sobrenome">

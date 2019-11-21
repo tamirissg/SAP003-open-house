@@ -5,34 +5,13 @@ const hammer = new Hammer(document.querySelector('main'));
 let index = 0;
 let tamanho = 0;
 
-const swipeRight = () => {
-  (index === tamanho - 1) ? index = 0 : index += 1;  
-  const card = document.querySelector('article');
-  card.className = 'card card-size p-1 cards-background swiping-right';
-  if (tamanho !== 10) {
-    card.addEventListener('animationend', () => { getCategory(window.location.hash) });
-  } else {
-    card.addEventListener('animationend', getEvents);
-  }
-};
-
-
-const swipeLeft = () => {
-  (index === 0) ? index = tamanho - 1 : index -= 1;
-  const card = document.querySelector('article');
-  card.className = 'card card-size p-1 cards-background swiping-left';
-  if (tamanho !== 10) {
-    card.addEventListener('animationend', () => { getCategory(window.location.hash) });
-  } else {
-    card.addEventListener('animationend', getEvents);
-  }
-};
-
 const moreInfo = (target) => {
   window.location.hash = target.id;
 };
 
-const showEvents = () => {
+const showEvents = (array) => {
+  console.log('show')
+  console.log(index)
   const main = document.querySelector('main');
   document.querySelector('.container-category').innerHTML = `
     ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
@@ -50,9 +29,9 @@ const showEvents = () => {
       .get()
       .then((query) => {
         query.forEach((user) => {
-          main.innerHTML = Card(window.data.arrayEvents[index], funcs);
+          main.innerHTML = Card(array[index], funcs);
           const arraySalvos = user.data().id_save;
-          if (arraySalvos.includes(window.data.arrayEvents[index].id)) {
+          if (arraySalvos.includes(array[index].id)) {
             const bookmark = document.querySelector('.save');
             bookmark.classList.add('fas');
             bookmark.classList.remove('far');
@@ -60,29 +39,30 @@ const showEvents = () => {
         });
       });
   } else {
-    main.innerHTML = Card(window.data.arrayEvents[index], funcs)
+    main.innerHTML = Card(array[index], funcs)
   }
 };
 
+let arrayEvents = [];
+
 const getEvents = () => {
+  console.log('get events')
   document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.remove('hide'));
   firebase.firestore().collection('events').orderBy('date')
     .get()
     .then((querySnapshot) => {
-      window.data = {
-        arrayEvents: [],
-      };
+      arrayEvents = [];
       querySnapshot.forEach((doc) => {
         const docEvent = {
           ...doc.data(),
           id: doc.id,
           position: index,
         };
-        window.data.arrayEvents.push(docEvent);
-        window.data.tamanho = window.data.arrayEvents.length;
+        arrayEvents.push(docEvent);
+        tamanho = arrayEvents.length;
       });
-    })
-    .then(showEvents);
+      showEvents(arrayEvents);
+    });
 };
 
 const share = () => {
@@ -141,7 +121,9 @@ const save = (id) => {
   }
 };
 
+let arrayfilter = [];
 const getCategory = (hash) => {
+  console.log('get cat')
   const category = hash.replace(/#Tipo-/, '');
   document.querySelector('main').innerHTML = '';
 
@@ -149,7 +131,7 @@ const getCategory = (hash) => {
     .where('type', 'array-contains', category)
     .get()
     .then((querySnapshot) => {
-      const arrayfilter = [];
+      arrayfilter = [];
       querySnapshot.forEach((doc) => {
         const docEvent = {
           ...doc.data(),
@@ -157,10 +139,34 @@ const getCategory = (hash) => {
           position: index,
         };
         arrayfilter.push(docEvent);
-        tamanho = arrayfilter.length;        
+        tamanho = arrayfilter.length;
       });
+      console.log(arrayfilter)
+      index = 0;
+      showEvents(arrayfilter);
     })
-    .then(showEvents);
+};
+
+const swipeRight = () => {
+  (index === tamanho - 1) ? index = 0 : index += 1;  
+  const card = document.querySelector('article');
+  card.className = 'card card-size p-1 cards-background swiping-right';
+  if (tamanho !== 11) {
+    card.addEventListener('animationend',showEvents(arrayfilter));
+  } else {
+    card.addEventListener('animationend', showEvents(arrayEvents));
+  }
+};
+
+const swipeLeft = () => {
+  (index === 0) ? index = tamanho - 1 : index -= 1;
+  const card = document.querySelector('article');
+  card.className = 'card card-size p-1 cards-background swiping-left';
+  if (tamanho !== 11) {
+    card.addEventListener('animationend', showEvents(arrayfilter));
+  } else {
+    card.addEventListener('animationend', showEvents(arrayEvents));
+  }
 };
 
 const funcs = {
