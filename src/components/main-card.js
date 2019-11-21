@@ -3,6 +3,7 @@ const Card = (props, funcs) => {
     <article class="card card-size p-1 cards-background">
         <div class="d-flex justify-content-end p-2 bg-white">
             <div>
+              <i class="fas fa-share-alt icon-regular-size" onClick="a.handleClick(event,${funcs.share})"></i>
               <i class="far fa-bookmark icon-regular-size save" onClick="a.handleClick(event,${funcs.save})" id=${props.id}></i>
             </div>
         </div>
