@@ -87,5 +87,6 @@ facebookBtn.addEventListener('click', loginFacebook);
 const loginBtn = document.querySelector('.btn-submit-login');
 loginBtn.addEventListener('click', signIn);
 
-const btnRegister = document.querySelector('.register');
-btnRegister.addEventListener('click', register);
+document.querySelectorAll('.register').forEach((element) => {
+  element.addEventListener('click', register);
+})

@@ -10,8 +10,6 @@ const moreInfo = (target) => {
 };
 
 const showEvents = (array) => {
-  console.log('show')
-  console.log(index)
   const main = document.querySelector('main');
   document.querySelector('.container-category').innerHTML = `
     ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
@@ -46,7 +44,6 @@ const showEvents = (array) => {
 let arrayEvents = [];
 
 const getEvents = () => {
-  console.log('get events')
   document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.remove('hide'));
   firebase.firestore().collection('events').orderBy('date')
     .get()
@@ -123,7 +120,6 @@ const save = (id) => {
 
 let arrayfilter = [];
 const getCategory = (hash) => {
-  console.log('get cat')
   const category = hash.replace(/#Tipo-/, '');
   document.querySelector('main').innerHTML = '';
 
@@ -141,7 +137,6 @@ const getCategory = (hash) => {
         arrayfilter.push(docEvent);
         tamanho = arrayfilter.length;
       });
-      console.log(arrayfilter)
       index = 0;
       showEvents(arrayfilter);
     })
