@@ -6,14 +6,18 @@ const hammer = new Hammer(document.querySelector('main'));
 let index = 0;
 let tamanho = 0;
 
-const moreInfo = (id) => { 
+const moreInfo = (target) => { 
+  window.location.hash = target.id;
+};
+
+const select = (id) => { 
   window.location.hash = id;
 };
 
 const showEvents = (array) => {
   const main = document.querySelector('main');
   document.querySelector('.container-category').innerHTML = `
-    ${Select(moreInfo)}
+    ${Select(select)}
     ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
     ${templateCategory({ src: 'img/karaoke.png', title: 'Show' })}
     ${templateCategory({ src: 'img/theater.png', title: 'Teatro' })}
@@ -107,7 +111,7 @@ const save = (bookmark) => {
 
 let arrayfilter = [];
   
-const getCategory = (parameter, hash) => {
+const getCategory = (parameter, hash) => { 
   const category = hash.replace(/\#(.*?)\-/, '')
   document.querySelector('main').innerHTML = '';
 
@@ -117,12 +121,14 @@ const getCategory = (parameter, hash) => {
     .get()
     .then((querySnapshot) => {
       arrayfilter = [];
-      querySnapshot.forEach((doc) => {
+      querySnapshot.forEach((doc) => {       
         const docEvent = {
           ...doc.data(),
           id: doc.id,
           position: index,
         };
+        console.log(docEvent);
+        
         arrayfilter.push(docEvent);
         tamanho = arrayfilter.length;
       });
@@ -157,6 +163,7 @@ const funcs = {
   swipeLeft,
   swipeRight,
   moreInfo,
+  select,
   getEvents,
   save,
   getCategory,
