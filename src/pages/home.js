@@ -5,7 +5,7 @@ const hammer = new Hammer(document.querySelector('main'));
 let index = 0;
 
 const swipeRight = () => {
-  (index === data.tamanho - 1) ? index = 0 : index += 1;
+  (index === window.data.tamanho - 1) ? index = 0 : index += 1;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-right';
   card.addEventListener('animationend', getEvents);
@@ -13,7 +13,7 @@ const swipeRight = () => {
 
 
 const swipeLeft = () => {
-  (index === 0) ? index = data.tamanho - 1 : index -= 1;
+  (index === 0) ? index = window.data.tamanho - 1 : index -= 1;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-left';
   card.addEventListener('animationend', getEvents);
@@ -73,12 +73,11 @@ const getEvents = () => {
 
 
 const save = (id) => {
-  console.log(event.currentTarget);
   const user = firebase.auth().currentUser.uid;
-
-  if (event.currentTarget.classList.contains('far')) {
-    event.currentTarget.classList.add('fas');
-    event.currentTarget.classList.remove('far');
+  const bookmark = document.getElementById(id);
+  if (bookmark.classList.contains('far')) {
+    bookmark.classList.add('fas');
+    bookmark.classList.remove('far');
     document.querySelector('.save').classList.add('animated', 'tada');
     firebase.firestore().collection('users')
       .get()
@@ -93,8 +92,8 @@ const save = (id) => {
         });
       });
   } else {
-    event.currentTarget.classList.add('far');
-    event.currentTarget.classList.remove('fas');
+    bookmark.currentTarget.classList.add('far');
+    bookmark.currentTarget.classList.remove('fas');
     firebase.firestore().collection('users')
       .get()
       .then((querySnapshot) => {
