@@ -9,7 +9,7 @@ const favoritesTemplate = (props) => {
       <h5 class="card-title text-truncate font-weight-bold font-regular-size mb-1">${props.title}</h5>
       <p class="card-text font-regular-size mb-1">${props.date} - ${props.hour}</p>
       <p class="card-text text-truncate font-regular-size m-0"><i class="fas fa-map-marker-alt icon-small-size"></i> ${props.local}</p>
-      <div class="d-flex align-items-center flex-row justify-content-center mt-2" id=${props.id} onClick="a.handleClick(event,${funcs.moreInfo})">
+      <div class="d-flex align-items-center flex-row justify-content-center mt-2" id=${props.id} onClick="favorites.handleClick(event,${funcs.moreInfo})">
         <i class="fas fa-plus icon-regular-size"></i>
         <p class="text-center mb-0 ml-1"> Saiba Mais</p>
       </div>
@@ -21,6 +21,7 @@ const favoritesTemplate = (props) => {
 
 const getFavorites = () => {
   const user = firebase.auth().currentUser.uid; 
+  document.querySelector('.container-category').innerHTML = '';
   main.innerHTML = '';
   document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.add('hide'));
 
@@ -45,7 +46,7 @@ const getFavorites = () => {
     });
 };
 
-window.a = {
+window.favorites = {
   handleClick: (event, callBack) => {  
     callBack(event.currentTarget.id);
   },

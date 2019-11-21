@@ -1,16 +1,25 @@
 import Card from '../components/main-card.js';
 import templateCategory from '../components/event-categories.js';
+import Select from '../components/input.js';
 
 const hammer = new Hammer(document.querySelector('main'));
 let index = 0;
 let tamanho = 0;
 
+const checkFilter = () => {
+  if (window.location.hash.includes('Tipo')) {
+    getCategory('type', window.location.hash);
+  } else if (window.location.hash.includes('Regiao')) {
+    getCategory('region', window.location.hash);
+  }
+}
+
 const swipeRight = () => {
   (index === tamanho - 1) ? index = 0 : index += 1;  
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-right';
-  if (tamanho !== 10) {
-    card.addEventListener('animationend', () => { getCategory(window.location.hash) });
+  if (tamanho !== 11) {
+    card.addEventListener('animationend', checkFilter);
   } else {
     card.addEventListener('animationend', getEvents(window.location.hash));
   }
@@ -21,15 +30,15 @@ const swipeLeft = () => {
   (index === 0) ? index = tamanho - 1 : index -= 1;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-left';
-  if (tamanho !== 10) {
-    card.addEventListener('animationend', () => { getCategory(window.location.hash) });
+  if (tamanho !== 11) {
+    card.addEventListener('animationend', checkFilter);
   } else {
     card.addEventListener('animationend', getEvents);
   }
 };
 
-const moreInfo = (target) => {
-  window.location.hash = target.id;
+const moreInfo = (id) => { 
+  window.location.hash = id;
 };
 
 const getEvents = () => {
@@ -50,10 +59,10 @@ const getEvents = () => {
           position: index,
         };
         window.data.arrayEvents.push(docEvent);
-        window.data.tamanho = window.data.arrayEvents.length;
+        tamanho = data.arrayEvents.length;       
       });
-
       document.querySelector('.container-category').innerHTML = `
+      ${Select(moreInfo)}
       ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
       ${templateCategory({ src: 'img/karaoke.png', title: 'Show' })}
       ${templateCategory({ src: 'img/theater.png', title: 'Teatro' })}
@@ -61,46 +70,33 @@ const getEvents = () => {
       ${templateCategory({ src: 'img/stretching-exercises.png', title: 'Esporte' })}
       ${templateCategory({ src: 'img/museum.png', title: 'Arte' })}
       `;
-      const userUid = firebase.auth().currentUser.uid;
-      firebase.firestore().collection('users').where('user_uid', '==', userUid)
-        .get()
-        .then((query) => {
-          query.forEach((user) => {
-            main.innerHTML = Card(window.data.arrayEvents[index], funcs);
-            const arraySalvos = user.data().id_save;
+      // const userUid = firebase.auth().currentUser.uid;
+      // firebase.firestore().collection('users').where('user_uid', '==', userUid)
+      //   .get()
+      //   .then((query) => {
+      //     query.forEach((user) => {
+      //       main.innerHTML = Card(window.data.arrayEvents[index], funcs);
+      //       const arraySalvos = user.data().id_save;
 
-            if (arraySalvos.includes(window.data.arrayEvents[index].id)) {
-              const bookmark = document.querySelector('.save');
-              bookmark.classList.add('fas');
-              bookmark.classList.remove('far');
-            }
-          });
-        });
+      //       if (arraySalvos.includes(window.data.arrayEvents[index].id)) {
+      //         const bookmark = document.querySelector('.save');
+      //         bookmark.classList.add('fas');
+      //         bookmark.classList.remove('far');
+      //       }
+      //     });
+      //   });
     });
 };
 
-const share = () => {
-  if (navigator.share) {
-    navigator.share({
-        title: 'Web Fundamentals',
-        text: 'Check out Web Fundamentals — it rocks!',
-        url: window.location.href,
-    })
-      .then(() => console.log('Successful share'))
-      .catch((error) => console.log('Error sharing', error));
-  }  else {
-    console.log(document.querySelector('article'));
-    
-  }
-}
-
-const save = (id) => {
+const save = (bookmark) => {
+  bookmark.classList.add('animated', 'tada');
+  if (firebase.auth().currentUser == null) {
+    $('#myModal').modal('show');
+  } else {
   const user = firebase.auth().currentUser.uid;
-  const bookmark = document.getElementById(id);
   if (bookmark.classList.contains('far')) {
     bookmark.classList.add('fas');
     bookmark.classList.remove('far');
-    document.querySelector('.save').classList.add('animated', 'tada');
     firebase.firestore().collection('users')
       .get()
       .then((querySnapshot) => {
@@ -114,8 +110,8 @@ const save = (id) => {
         });
       });
   } else {
-    bookmark.currentTarget.classList.add('far');
-    bookmark.currentTarget.classList.remove('fas');
+    bookmark.classList.add('far');
+    bookmark.classList.remove('fas');
     firebase.firestore().collection('users')
       .get()
       .then((querySnapshot) => {
@@ -129,14 +125,16 @@ const save = (id) => {
         });
       });
   }
+}
 };
 
-const getCategory = (hash) => {
-  const category = hash.replace(/#Tipo-/, '')
+const getCategory = (parameter, hash) => {
+  const category = hash.replace(/\#(.*?)\-/, '')
   document.querySelector('main').innerHTML = '';
 
   firebase.firestore().collection('events')
-    .where('type', 'array-contains', category)
+    .where(parameter, 'array-contains', category)
+    .orderBy('date')
     .get()
     .then((querySnapshot) => {
       const arrayfilter = [];
@@ -150,6 +148,7 @@ const getCategory = (hash) => {
         tamanho = arrayfilter.length;        
       });
       document.querySelector('.container-category').innerHTML = `
+      ${Select(moreInfo)}
       ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
       ${templateCategory({ src: 'img/karaoke.png', title: 'Show' })}
       ${templateCategory({ src: 'img/theater.png', title: 'Teatro' })}
@@ -167,7 +166,6 @@ const funcs = {
   moreInfo,
   getEvents,
   save,
-  share,
   getCategory,
 };
 

@@ -114,12 +114,21 @@ html,body{
   object-position: 0 88%;
 }
 
+.green-border {
+  border-color: #4EC993 !important;
+}
+
 .map-container {
   height: 41%;
 }
 
+.select {
+  width: 92vw !important;
+}
+
 .more-info {
   height: 78vh;
+  width: 97vw;
 }
 
 .height-div {

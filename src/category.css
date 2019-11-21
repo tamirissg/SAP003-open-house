@@ -26,7 +26,11 @@
 
 .img-category:hover {
     background-color:#4EC993;
+}
 
+.div-category {
+    width: 15vw;
+    height: max-content;
 }
 
 @media (min-width: 900px){   
