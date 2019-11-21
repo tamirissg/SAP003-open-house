@@ -66,7 +66,8 @@ const signIn = (e) => {
 document.querySelectorAll('.login').forEach((element) => {
   element.addEventListener('click', (event) => {
     if (firebase.auth().currentUser == null) {
-      $('#myModal').modal('show');
+      $('#small-modal').modal('hide');
+      $('#myModal').modal('show');  
     } else {
       window.location.hash = event.currentTarget.id;
     }
