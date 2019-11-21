@@ -3,20 +3,29 @@ import templateCategory from '../components/event-categories.js';
 
 const hammer = new Hammer(document.querySelector('main'));
 let index = 0;
+let tamanho = 0;
 
 const swipeRight = () => {
-  (index === data.tamanho - 1) ? index = 0 : index += 1;  
+  (index === tamanho - 1) ? index = 0 : index += 1;  
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-right';
-  card.addEventListener('animationend', getEvents);
+  if (tamanho !== 10) {
+    card.addEventListener('animationend', () => { getCategory(window.location.hash) });
+  } else {
+    card.addEventListener('animationend', getEvents(window.location.hash));
+  }
 };
 
 
 const swipeLeft = () => {
-  (index === 0) ? index = data.tamanho - 1 : index -= 1;
+  (index === 0) ? index = tamanho - 1 : index -= 1;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-left';
-  card.addEventListener('animationend', getEvents);
+  if (tamanho !== 10) {
+    card.addEventListener('animationend', () => { getCategory(window.location.hash) });
+  } else {
+    card.addEventListener('animationend', getEvents);
+  }
 };
 
 const moreInfo = (target) => {
@@ -33,7 +42,6 @@ const getEvents = () => {
     .then((querySnapshot) => {
       window.data = {
         arrayEvents: [],
-        tamanho: 0,
       };
       querySnapshot.forEach((doc) => {
         const docEvent = {
@@ -46,7 +54,7 @@ const getEvents = () => {
       });
       document.querySelector('.container-category').innerHTML = `
       ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
-      ${templateCategory({ src: 'img/karaoke.png', title: 'Shows' })}
+      ${templateCategory({ src: 'img/karaoke.png', title: 'Show' })}
       ${templateCategory({ src: 'img/theater.png', title: 'Teatro' })}
       ${templateCategory({ src: 'img/popcorn.png', title: 'Cinema' })}
       ${templateCategory({ src: 'img/stretching-exercises.png', title: 'Esporte' })}
@@ -74,6 +82,35 @@ const save = (id) => {
     });
 };
 
+const getCategory = (hash) => {
+  const category = hash.replace(/#Tipo-/, '')
+  document.querySelector('main').innerHTML = '';
+
+  firebase.firestore().collection('events')
+    .where('type', 'array-contains', category)
+    .get()
+    .then((querySnapshot) => {
+      const arrayfilter = [];
+      querySnapshot.forEach((doc) => {
+        const docEvent = {
+          ...doc.data(),
+          id: doc.id,
+          position: index,
+        };
+        arrayfilter.push(docEvent);
+        tamanho = arrayfilter.length;        
+      });
+      document.querySelector('.container-category').innerHTML = `
+      ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
+      ${templateCategory({ src: 'img/karaoke.png', title: 'Show' })}
+      ${templateCategory({ src: 'img/theater.png', title: 'Teatro' })}
+      ${templateCategory({ src: 'img/popcorn.png', title: 'Cinema' })}
+      ${templateCategory({ src: 'img/stretching-exercises.png', title: 'Esporte' })}
+      ${templateCategory({ src: 'img/museum.png', title: 'Arte' })}
+      `;
+      document.querySelector('main').innerHTML = Card(arrayfilter[index], funcs);
+    });
+};
 
 const funcs = {
   swipeLeft,
@@ -81,6 +118,7 @@ const funcs = {
   moreInfo,
   getEvents,
   save,
+  getCategory,
 };
 
 hammer.on('swiperight', swipeRight);

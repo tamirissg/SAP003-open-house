@@ -18,6 +18,8 @@ function init() {
     main.innerHTML = funcs.getEvents();
   } else if (window.location.hash === '#saibamais') {
     main.innerHTML = funcs.moreInfo();
+  } else if (window.location.hash.includes('Tipo')) {
+    funcs.getCategory(window.location.hash);
   } else if (window.location.hash === '#salvos') {
     getFavorites();
   } else if (window.location.hash === '#register') {
