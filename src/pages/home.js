@@ -5,7 +5,7 @@ const hammer = new Hammer(document.querySelector('main'));
 let index = 0;
 
 const swipeRight = () => {
-  (index === data.tamanho - 1) ? index = 0 : index += 1;  
+  (index === window.data.tamanho - 1) ? index = 0 : index += 1;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-right';
   card.addEventListener('animationend', getEvents);
@@ -13,7 +13,7 @@ const swipeRight = () => {
 
 
 const swipeLeft = () => {
-  (index === 0) ? index = data.tamanho - 1 : index -= 1;
+  (index === 0) ? index = window.data.tamanho - 1 : index -= 1;
   const card = document.querySelector('article');
   card.className = 'card card-size p-1 cards-background swiping-left';
   card.addEventListener('animationend', getEvents);
@@ -24,7 +24,7 @@ const moreInfo = (target) => {
 };
 
 const getEvents = () => {
-  const main = document.querySelector('main'); 
+  const main = document.querySelector('main');
   document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.remove('hide'));
 
 
@@ -41,9 +41,10 @@ const getEvents = () => {
           id: doc.id,
           position: index,
         };
-        data.arrayEvents.push(docEvent);
-        data.tamanho = data.arrayEvents.length;
+        window.data.arrayEvents.push(docEvent);
+        window.data.tamanho = window.data.arrayEvents.length;
       });
+
       document.querySelector('.container-category').innerHTML = `
       ${templateCategory({ src: 'img/tickets.png', title: 'Todos' })}
       ${templateCategory({ src: 'img/karaoke.png', title: 'Shows' })}
@@ -52,26 +53,60 @@ const getEvents = () => {
       ${templateCategory({ src: 'img/stretching-exercises.png', title: 'Esporte' })}
       ${templateCategory({ src: 'img/museum.png', title: 'Arte' })}
       `;
-      main.innerHTML = Card(data.arrayEvents[index], funcs);
+      const userUid = firebase.auth().currentUser.uid;
+      firebase.firestore().collection('users').where('user_uid', '==', userUid)
+        .get()
+        .then((query) => {
+          query.forEach((user) => {
+            main.innerHTML = Card(window.data.arrayEvents[index], funcs);
+            const arraySalvos = user.data().id_save;
+
+            if (arraySalvos.includes(window.data.arrayEvents[index].id)) {
+              const bookmark = document.querySelector('.save');
+              bookmark.classList.add('fas');
+              bookmark.classList.remove('far');
+            }
+          });
+        });
     });
 };
 
 
 const save = (id) => {
   const user = firebase.auth().currentUser.uid;
-  document.querySelector('.save').classList.add('animated', 'tada');
-  firebase.firestore().collection('users')
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        if (user === doc.data().user_uid) {
-          firebase.firestore().collection('users').doc(doc.id)
-            .update({
-              id_save: firebase.firestore.FieldValue.arrayUnion(id),
-            });
-        }
+  const bookmark = document.getElementById(id);
+  if (bookmark.classList.contains('far')) {
+    bookmark.classList.add('fas');
+    bookmark.classList.remove('far');
+    document.querySelector('.save').classList.add('animated', 'tada');
+    firebase.firestore().collection('users')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (user === doc.data().user_uid) {
+            firebase.firestore().collection('users').doc(doc.id)
+              .update({
+                id_save: firebase.firestore.FieldValue.arrayUnion(id),
+              });
+          }
+        });
       });
-    });
+  } else {
+    bookmark.currentTarget.classList.add('far');
+    bookmark.currentTarget.classList.remove('fas');
+    firebase.firestore().collection('users')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (user === doc.data().user_uid) {
+            firebase.firestore().collection('users').doc(doc.id)
+              .update({
+                id_save: firebase.firestore.FieldValue.arrayRemove(id),
+              });
+          }
+        });
+      });
+  }
 };
 
 
@@ -85,7 +120,7 @@ const funcs = {
 
 hammer.on('swiperight', swipeRight);
 hammer.on('swipeleft', swipeLeft);
-document.querySelector('.fa-angle-left').addEventListener('click', swipeLeft)
+document.querySelector('.fa-angle-left').addEventListener('click', swipeLeft);
 document.querySelector('.fa-angle-right').addEventListener('click', swipeRight);
 
 export default funcs;

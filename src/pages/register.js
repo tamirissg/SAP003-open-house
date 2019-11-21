@@ -19,20 +19,20 @@ const registerPage = () => {
     const email = document.querySelector('.email-register-input').value;
     const password = document.querySelector('.password-register-input').value;
     const passwordConfirmation = document.querySelector('.confirm-password-input').value;
-    const nome = document.querySelector('.nome-input').value;
+    const name = document.querySelector('.nome-input').value;
     const errorMessage = document.querySelector('.error');
-    if (nome === '' || email === '' || password === '') {
+    if (name === '' || email === '' || password === '') {
       errorMessage.textContent = 'Preencha os campos em branco';
     } else if (password !== passwordConfirmation) {
       errorMessage.textContent = 'Senha não confere';
     } else if (password === passwordConfirmation) {
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(() => {
-          firebase.auth().currentUser.updateProfile({ displayName: nome });
+          firebase.auth().currentUser.updateProfile({ displayName: name });
           const user = firebase.auth().currentUser;
           if (user != null) {
             const userInfo = {
-              nome: user.displayName,
+              nome: name,
               user_uid: user.uid,
             };
             firebase.firestore().collection('users').add(userInfo);
