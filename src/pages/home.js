@@ -41,8 +41,8 @@ const getEvents = () => {
           id: doc.id,
           position: index,
         };
-        data.arrayEvents.push(docEvent);
-        data.tamanho = data.arrayEvents.length;
+        window.data.arrayEvents.push(docEvent);
+        window.data.tamanho = window.data.arrayEvents.length;
       });
 
       document.querySelector('.container-category').innerHTML = `
@@ -58,16 +58,15 @@ const getEvents = () => {
         .get()
         .then((query) => {
           query.forEach((user) => {
-            const array = user.data().id_save;
-            array.forEach((id) => {
-              if (id === data.arrayEvents[index].id) {
-                console.log('esta salvo')
-                main.innerHTML = Card(data.arrayEvents[index], funcs)
-              }
-            });
+            main.innerHTML = Card(window.data.arrayEvents[index], funcs);
+            const arraySalvos = user.data().id_save;
+
+            if (arraySalvos.includes(window.data.arrayEvents[index].id)) {
+              const bookmark = document.querySelector('.save');
+              bookmark.classList.add('fas');
+              bookmark.classList.remove('far');
+            }
           });
-          console.log(data.arrayEvents[index].id);
-          // main.innerHTML = Card(data.arrayEvents[index], funcs);
         });
     });
 };
