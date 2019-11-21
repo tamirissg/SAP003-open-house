@@ -10,10 +10,4 @@ const templateCategory = (props) => {
   return template;
 };
 
-window.a = {
-  handleClick: (event, callBack) => {
-    callBack(event.target.id);
-  },
-};
-
 export default templateCategory;

@@ -19,7 +19,9 @@ function init() {
   } else if (window.location.hash === '#saibamais') {
     main.innerHTML = funcs.moreInfo();
   } else if (window.location.hash.includes('Tipo')) {
-    funcs.getCategory(window.location.hash);
+    funcs.getCategory('type', window.location.hash);
+  } else if (window.location.hash.includes('Regiao')) {
+    funcs.getCategory('region', window.location.hash);
   } else if (window.location.hash === '#salvos') {
     getFavorites();
   } else if (window.location.hash === '#register') {
