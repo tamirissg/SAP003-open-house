@@ -70,21 +70,21 @@ const getEvents = () => {
       ${templateCategory({ src: 'img/stretching-exercises.png', title: 'Esporte' })}
       ${templateCategory({ src: 'img/museum.png', title: 'Arte' })}
       `;
-      // const userUid = firebase.auth().currentUser.uid;
-      // firebase.firestore().collection('users').where('user_uid', '==', userUid)
-      //   .get()
-      //   .then((query) => {
-      //     query.forEach((user) => {
-      //       main.innerHTML = Card(window.data.arrayEvents[index], funcs);
-      //       const arraySalvos = user.data().id_save;
+      const userUid = firebase.auth().currentUser.uid;
+      firebase.firestore().collection('users').where('user_uid', '==', userUid)
+        .get()
+        .then((query) => {
+          query.forEach((user) => {
+            main.innerHTML = Card(window.data.arrayEvents[index], funcs);
+            const arraySalvos = user.data().id_save;
 
-      //       if (arraySalvos.includes(window.data.arrayEvents[index].id)) {
-      //         const bookmark = document.querySelector('.save');
-      //         bookmark.classList.add('fas');
-      //         bookmark.classList.remove('far');
-      //       }
-      //     });
-      //   });
+            if (arraySalvos.includes(window.data.arrayEvents[index].id)) {
+              const bookmark = document.querySelector('.save');
+              bookmark.classList.add('fas');
+              bookmark.classList.remove('far');
+            }
+          });
+        });
     });
 };
 
