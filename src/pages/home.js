@@ -64,6 +64,20 @@ const getEvents = () => {
     });
 };
 
+const share = () => {
+  if (navigator.share) {
+    navigator.share({
+        title: 'Web Fundamentals',
+        text: 'Check out Web Fundamentals — it rocks!',
+        url: window.location.href,
+    })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing', error));
+  }  else {
+    console.log(document.querySelector('article'));
+    
+  }
+}
 
 const save = (id) => {
   const user = firebase.auth().currentUser.uid;
@@ -118,6 +132,7 @@ const funcs = {
   moreInfo,
   getEvents,
   save,
+  share,
   getCategory,
 };
 
