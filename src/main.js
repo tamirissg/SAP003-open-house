@@ -15,7 +15,7 @@ function init() {
   } else if (window.location.hash === '#info') {
     main.innerHTML = Info();
   } else if (window.location.hash === '') {
-    main.innerHTML = funcs.getEvents();
+    funcs.getEvents();
   } else if (window.location.hash === '#saibamais') {
     main.innerHTML = funcs.moreInfo();
   } else if (window.location.hash.includes('Tipo')) {
@@ -31,18 +31,25 @@ function init() {
   }
 }
 
+
 window.addEventListener('hashchange', init);
 window.addEventListener('load', init);
 
 document.querySelectorAll('.home').forEach((btn) => {
   btn.addEventListener('click', () => {
     window.location.hash = '';
+    const selected = document.querySelectorAll('.selected')
+    selected.forEach(btn => btn.classList.remove('selected'))
+    btn.classList.add('selected');
   });
 });
 
 document.querySelectorAll('.info').forEach((btn) => {
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', (e) => {
     window.location.hash = 'info';
+    const selected = document.querySelectorAll('.selected')
+    selected.forEach(btn => btn.classList.remove('selected'))
+    btn.classList.add('selected');
   });
 });
 
@@ -72,6 +79,9 @@ document.querySelectorAll('.login').forEach((element) => {
       $('#myModal').modal('show');  
     } else {
       window.location.hash = event.currentTarget.id;
+      const selected = document.querySelectorAll('.selected')
+      selected.forEach(btn => btn.classList.remove('selected'))
+      element.classList.add('selected');
     }
   });
 });

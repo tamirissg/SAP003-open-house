@@ -3,7 +3,7 @@ const main = document.querySelector('main');
 
 const favoritesTemplate = (props) => {
   const template = `
-  <article class="card d-flex flex-row favorite-card p-1 mb-2 cards-background">
+  <article class="card d-flex flex-row favorite-card p-1 m-2 cards-background">
     <img src=${props.img} class="favorite-card-img">
     <div class="p-2 favorite-card-body bg-white ml-1">
       <h5 class="card-title text-truncate font-weight-bold font-regular-size mb-1">${props.title}</h5>

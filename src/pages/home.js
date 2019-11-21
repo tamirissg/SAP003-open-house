@@ -38,6 +38,10 @@ const showEvents = (array) => {
           }
         });
       });
+  } else {
+    main.innerHTML = Card(array[index], funcs);
+  }
+}
   
 let arrayEvents = [];
 const getEvents = () => {
@@ -99,7 +103,6 @@ const save = (bookmark) => {
   } else {
     $('#small-modal').modal('show');
   }
-}
 };
 
 let arrayfilter = [];
@@ -127,36 +130,6 @@ const getCategory = (parameter, hash) => {
       showEvents(arrayfilter);
     })
 };
-  
-// const checkFilter = () => {
-//   if (window.location.hash.includes('Tipo')) {
-//     getCategory('type', window.location.hash);
-//   } else if (window.location.hash.includes('Regiao')) {
-//     getCategory('region', window.location.hash);
-//   }
-// }
-
-// const swipeRight = () => {
-//   (index === tamanho - 1) ? index = 0 : index += 1;  
-//   const card = document.querySelector('article');
-//   card.className = 'card card-size p-1 cards-background swiping-right';
-//   if (tamanho !== 11) {
-//     card.addEventListener('animationend', checkFilter);
-//   } else {
-//     card.addEventListener('animationend', getEvents);
-//   }
-// };
-  
-// const swipeLeft = () => {
-//   (index === 0) ? index = tamanho - 1 : index -= 1;
-//   const card = document.querySelector('article');
-//   card.className = 'card card-size p-1 cards-background swiping-left';
-//   if (tamanho !== 11) {
-//     card.addEventListener('animationend', checkFilter);
-//    } else {
-//     main.innerHTML = Card(array[index], funcs)
-//   }
-// };
 
 const swipeRight = () => {
   (index === tamanho - 1) ? index = 0 : index += 1;  
