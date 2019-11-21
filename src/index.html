@@ -111,32 +111,65 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
     <script type="module" src="main.js"></script>
-</body>
 
-<div class="modal" tabindex="-1" role="dialog" id='myModal'>
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    <div class="modal" tabindex="-1" role="dialog" id='myModal'>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <form class='form-login'>
+                        <div class="form-group">
+                            <input type="email" class="form-control input-email-login" placeholder="Email">
+                            <input type="password" class="form-control input-password-login" placeholder="Senha">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-submit-login entry">Entrar</button>
+                    </form>
+                    <div class='error'></div>
+                </div>
+                <div class="modal-body text-center ">
+                    <button type="button" class="primary-button fab fa-google google-login rounded-circle"></button>
+                    <button type="button" class="primary-button fab fa-facebook-f facebook-login rounded-circle"></button>
+                </div>
+                <div class="border-top p-3 d-flex justify-content-center register">
+                    <p>Cadastre-se aqui</p>
+                </div>
             </div>
-            <div class="modal-body text-center">
-                <form class='form-login'>
-                    <div class="form-group">
-                        <input type="email" class="form-control input-email-login" placeholder="Email">
-                        <input type="password" class="form-control input-password-login" placeholder="Senha">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-submit-login entry">Entrar</button>
-                </form>
-                <div class='error'></div>
-            </div>
-            <div class="modal-body text-center ">
-                <button type="button" class="primary-button fab fa-google google-login rounded-circle"></button>
-                <button type="button" class="primary-button fab fa-facebook-f facebook-login rounded-circle"></button>
-            </div>
-            <button type="button" class="btn btn-primary m-3 register entry">Cadastre-se</button>
         </div>
     </div>
-</div>
+
+    <div class="modal" tabindex="-1" role="dialog" id='small-modal'>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center">
+            <div class="modal-header ">
+                <h5 class="modal-title">Apenas para membros cadastrados!</h5>
+            </div>
+            <div class="modal-body">
+                <p>Se cadastre ou faça login</p>
+            </div>
+            <button type="button" class="btn btn-primary m-3 entry login" data-dismiss="modal">Login</button>
+            <button type="button" class="btn btn-primary m-3 entry register" data-dismiss="modal">Cadastre-se</button>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id='edit-name'>
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                  <div class="modal-header ">
+                    <h5 class="modal-title">Editando perfil</h5>
+                  </div>
+                  <div class="modal-body login" data-dismiss="modal">
+                    <div class="form-group">
+                            <label for="new-name">Novo Nome</label>
+                            <input type="text" class="form-control" id="new-name" placeholder="Novo Nome">
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+</body>

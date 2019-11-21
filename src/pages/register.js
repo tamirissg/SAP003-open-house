@@ -1,6 +1,7 @@
 const registerPage = () => {
   document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.add('hide'));
   const template = `
+  <h3 class='mb-3'>Seja bem vindo(a)!</h3>
     <form>
       <div class="form-group">
         <input type="text" class="form-control nome-input" placeholder="Nome e Sobrenome">
