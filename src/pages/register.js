@@ -1,4 +1,5 @@
 const registerPage = () => {
+  document.querySelectorAll('.arrow').forEach((arrow) => arrow.classList.add('hide'));
   const template = `
   <h3 class='mb-3'>Seja bem vindo(a)!</h3>
     <form>
@@ -8,7 +9,7 @@ const registerPage = () => {
         <input type="password" class="form-control password-register-input" placeholder="Senha">
         <input type="password" class="form-control confirm-password-input" placeholder="Confirmar senha">
       </div>
-      <button type="submit" class="btn btn-primary register-btn btn-block">Registrar</button>
+      <button type="submit" class="btn btn-primary register-btn btn-block entry">Registrar</button>
       <div class='error'></div>
     </form>
   `;
