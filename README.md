@@ -15,7 +15,7 @@ Segue uma amostra do resultado da nossa primeira pesquisa de mercado:
 
 ![imagem](grafico02.JPG)
 
-"[imagem](grafico03.JPG)
+![imagem](grafico03.JPG)
 
 Após uma semana de Design Sprint chegamos a esse protótipo:
 
